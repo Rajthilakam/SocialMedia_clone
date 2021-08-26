@@ -4,21 +4,10 @@ import axios from "axios";
 import Toasts from "../components/common/successtoast";
 //import M from 'materialize-css'
 
-export const registerUser = (userData) => dispatch => {
+export const registerUser = (userData,history) => dispatch => {
     axios
     .post('/api/users/register', userData)
-    .then(res => {
-        
-        console.log(userData)
-        return (
-            <div>
-                     <Toasts />
-                </div>
-        )
-                
-               
-                
-    })
+    .then(res => history.push('/login'))
     .catch(err => 
       dispatch({
         type: GET_ERRORS,

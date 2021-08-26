@@ -16,7 +16,8 @@ class Register extends Component {
             password: '',
             password2: '',
             dob: '',
-            errors: {}
+            errors: {},
+            show:true
         }
         this.onChange = this.onChange.bind(this);
     }
@@ -59,6 +60,7 @@ class Register extends Component {
     render() {
         //const {errors} = this.state 
         const {errors} = this.props.errors
+
 
         return (
 
@@ -128,7 +130,7 @@ class Register extends Component {
 
                             <button type="submit" className="btn btn-primary">Submit</button>
                                     
-                            <Toasts/>
+                            <Toasts show = {this.state.show} />
                         </form>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ export const registerUser = (userData,history) => dispatch => {
 }
 
 //Login
-export const loginUser = (userData) => dispatch => {
+export const loginUser = (userData,history) => dispatch => {
   axios
   .post("/api/users/login", userData)
   .then((res) => {
@@ -36,6 +36,8 @@ export const loginUser = (userData) => dispatch => {
       type: SET_CURRENT_USER,
       payload: decoded,
     });
+
+    //history.push('/newsfeed')
   })
   .catch((err) =>
     dispatch({
@@ -43,10 +45,18 @@ export const loginUser = (userData) => dispatch => {
       payload: err.response.data,
     })
   );
-
-
 }
   
-  
-
+//LOGOUT  
+export const logoutUser = () => dispatch => {
+  //Remove token from ls
+  localStorage.removeItem('jwtToken');
+  //Remove token from axios header
+  setAuthToken(false);
+  //Reset user in the redux store
+  dispatch({
+    type: SET_CURRENT_USER,
+    payload: {},
+  });
+}
 

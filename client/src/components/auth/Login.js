@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import {connect} from 'react-redux';
 import {loginUser} from '../../action/authActions';
 import PropTypes from 'prop-types';
+import Forgotpassword from './Forgotpassword';
+//import { withRouter } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -29,10 +31,21 @@ class Login extends Component {
           password: this.state.password,
         };
         console.log(user)
-        this.props.loginUser(user)
+        this.props.loginUser(user,this.props.history)
     }
 
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+          this.props.history.push("/newsfeed");
+        }
+      }
+
     componentWillReceiveProps(nextProps){
+
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push("/newsfeed");
+          }
+
         if (nextProps.errors){
           this.setState({errors: nextProps.errors});
         }
@@ -77,6 +90,8 @@ class Login extends Component {
                             </div>                           
 
                             <button type="submit"  className="btn btn-primary">Submit</button>
+                            
+                            <Forgotpassword/>
                         </form>
                     </div>
                 </div>
@@ -97,3 +112,4 @@ const mapStateToProps = (state) => ({
   });
 
 export default  connect(mapStateToProps, { loginUser })(Login)
+

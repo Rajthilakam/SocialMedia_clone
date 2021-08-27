@@ -22,7 +22,7 @@ const transporter = nodeMailer.createTransport(sendGridTransport({
     }
 }))
 
-//@Routes POST   /api/user/register
+//@Routes POST   /api/users/register
 //@desc Registering a user
 //@access Public
 
@@ -94,7 +94,7 @@ _route.post('/register',(req,res) => {
     .catch(err => logger.error(`Error while checking user in the register route ${err}`))
 })
 
-//@Routes POST  /api/user/login
+//@Routes POST  /api/users/login
 //@desc Login a user
 //@access Public
 

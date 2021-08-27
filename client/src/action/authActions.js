@@ -1,6 +1,8 @@
-//import { SET_CURRENT_USER } from "./types";
+import { SET_CURRENT_USER } from "./types";
 import { GET_ERRORS } from "./types";
 import axios from "axios";
+import setAuthToken from '../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
 //import Toasts from "../components/common/successtoast";
 //import M from 'materialize-css'
 
@@ -18,7 +20,33 @@ export const registerUser = (userData,history) => dispatch => {
 }
 
 //Login
-export const loginUser = (userData) => {
-  return true
+export const loginUser = (userData) => dispatch => {
+  axios
+  .post("/api/users/login", userData)
+  .then((res) => {
+    //save the token to localstorage
+    const {token} = res.data;
+    localStorage.setItem('jwtToken', token);
+    //set token to auth header
+    setAuthToken(token);
+    //decode token
+    const decoded = jwt_decode(token);
+    //Write user info to redux
+    dispatch({
+      type: SET_CURRENT_USER,
+      payload: decoded,
+    });
+  })
+  .catch((err) =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    })
+  );
+
+
 }
+  
+  
+
 

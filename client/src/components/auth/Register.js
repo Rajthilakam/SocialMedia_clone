@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../action/authActions';
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
-import Toasts from '../common/successtoast';
+//import Toasts from '../common/successtoast';
 
 class Register extends Component {
     constructor() {
@@ -39,7 +39,7 @@ class Register extends Component {
             password2:this.state.password2
         }
 
-        this.props.registerUser(newUser)
+        this.props.registerUser(newUser,this.props.history)
         
         //axios
         //.post('/api/users/register',newUser)
@@ -51,15 +51,15 @@ class Register extends Component {
             //this.setState({errors:err.response.data}))
     }
 
-    componentWillReceiveProps(nextProps){
+    UNSAFE_componentWillReceiveProps(nextProps){
         if (nextProps.errors){
           this.setState({errors: nextProps.errors});
         }
       }
 
     render() {
-        //const {errors} = this.state 
-        const {errors} = this.props.errors
+        const {errors} = this.state 
+        //const {errors} = this.props.errors
 
 
         return (
@@ -130,7 +130,7 @@ class Register extends Component {
 
                             <button type="submit" className="btn btn-primary">Submit</button>
                                     
-                            <Toasts show = {this.state.show} />
+                          
                         </form>
                     </div>
                 </div>

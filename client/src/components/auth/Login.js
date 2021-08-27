@@ -29,7 +29,15 @@ class Login extends Component {
           password: this.state.password,
         };
         console.log(user)
+        this.props.loginUser(user)
     }
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.errors){
+          this.setState({errors: nextProps.errors});
+        }
+      }
+
     
     render() {
 

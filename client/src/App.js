@@ -52,7 +52,7 @@ function App(props) {
     <div className="App">
       <Route exact path = '/' component={Register}></Route>  
       <Route exact path = '/login' component={Login}></Route>
-      <Route  path = '/newpassword' component={NewPassword}></Route>
+      <Route  exact path = '/newpassword/:token' component={NewPassword}></Route>
       <Route exact path = '/newsfeed' component={NewsFeed}></Route>
 
 

@@ -79,3 +79,24 @@ export const forgotPassword = (userEmail) => dispatch => {
     })
   )
 }
+
+//New Password
+
+export const newPassword = (userPassword) => dispatch => {
+
+  axios
+  .post('/api/users/new-password',userPassword)
+  .then((res) => {
+    dispatch({
+      type: SET_ALERT_MSG,
+      payload: res.data
+    });
+  }
+      )
+  .catch((err) =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    })
+  )
+}

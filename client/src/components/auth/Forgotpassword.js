@@ -1,7 +1,6 @@
 
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
@@ -36,20 +35,6 @@ class Forgotpassword extends Component {
         console.log(userEmail)  
 
         this.props.forgotPassword(userEmail)
-        
-         //axios
-        //.post('/api/users/reset',userEmail)
-        //.then(res=> {
-            
-            //this.setState({errors:{}})
-            //this.setState({email:''})
-           
-            //console.log(this.state.message)
-            //return console.log(res.data)})
-        //.catch(err=> 
-
-            //console.log(err))
-           
         
     }
 

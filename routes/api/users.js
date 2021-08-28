@@ -207,7 +207,7 @@ _route.post('/new-password',(req,res)=> {
     .then(user=>{
 
         if(!user){
-            return res.status(422).json({error:"Try again session expired"})
+            return res.status(404).json({error:"Try again session expired"})
         }
 
         bcrypt.genSalt(10)
@@ -221,7 +221,7 @@ _route.post('/new-password',(req,res)=> {
                 user.resetToken = undefined
                 user.expireToken = undefined
                 user.save()
-                return res.json({message:"Password Updated Success"})
+                return res.json({message:"Password Updated Successfully"})
             }
         }) 
         .catch(err => logger.error(err))

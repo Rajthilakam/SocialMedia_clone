@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import classnames from 'classnames';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import {newPassword} from '../../action/authActions';
 
-export default class NewPassword extends Component {
+
+
+class NewPassword extends Component {
 
     constructor(){
         super();
         this.state = {
-            email:'',
+            password:'',
             errors:{},
-            message:''
+            alert:{
+                message:''
+            },
+            token:''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -22,42 +31,61 @@ export default class NewPassword extends Component {
 
       onSubmit(e) {
         e.preventDefault();
-        const userEmail = {
-          email: this.state.email     
+        const userPassword = {
+          password: this.state.password,
+          token:this.props.match.params.token    
         };
-        console.log(userEmail)  
+        console.log(userPassword)  
+
+        this.props.newPassword(userPassword)
         
-         axios
-        .post('/api/users/reset',userEmail)
-        .then(res=> {
+         //axios
+        //.post('/api/users/new-password',userPassword)
+        //.then(res=> {
             
-            //this.setState({errors:{}})
-            return console.log(res.data)})
-        .catch(err=>
-            this.setState({errors:err.response.data}))
+           
+            //return console.log(res.data)})
+        //.catch(err=>
+            //this.setState({errors:err.response.data}))
     }  
+
+
+    componentWillReceiveProps(nextProps){
+
+        if (nextProps.alert){
+            this.setState({alert: nextProps.alert});
+          }
+
+        if (nextProps.errors){
+          this.setState({errors: nextProps.errors});
+        }
+      }
 
 
     render() {
         const {errors} = this.state
-        const message = this.state.message
+        const message = this.state.alert.message
+        const error = this.state.errors.error
         return (
             <div>
                 <form noValidate onSubmit={this.onSubmit}>
                         <div className="form-group">
-                                <label for="exampleInputEmail">Email</label>
-                                <input type="email" 
-                                 className= {classnames('form-control', {'is-invalid': errors.email})} 
-                                 name= "email" 
-                                value = {this.state.email}
+                                <label for="exampleInputPassword">Password</label>
+                                <input type="password" 
+                                 className= {classnames('form-control', {'is-invalid': errors.password})} 
+                                 name= "password" 
+                                value = {this.state.password}
                                 onChange= {this.onChange.bind(this)}  
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                                 {errors.email ? (
-                                <div className="invalid-feedback">{errors.email}</div>):''}
+                                id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Enter Password" />
+                                 {errors.password ? (
+                                <div className="invalid-feedback">{errors.password}</div>):''}
                             
                             </div>
-                            {message ? (<div className="alert alert-primary" role="alert">
-                               message
+                            {error ? (<div class="alert alert-warning" role="alert">
+                                           {error}
+                                        </div>):''}
+                            {message ? (<div className="alert alert-info" role="alert">
+                                 Password updated Successfully.Click here <a href="/login" className="alert-link">to Login.</a>   
                             </div>) : ''}  
                             <button type="submit"  className="btn btn-primary">Submit</button>
                     </form>         
@@ -65,3 +93,18 @@ export default class NewPassword extends Component {
         )
     }
 }
+
+
+NewPassword.propTypes = {
+    newPassword:PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    alert:PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    errors: state.errors,
+    message: state.message,
+    alert:state.alert
+  });
+
+  export default connect(mapStateToProps, { newPassword})(NewPassword)

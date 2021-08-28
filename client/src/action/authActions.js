@@ -66,7 +66,6 @@ export const forgotPassword = (userEmail) => dispatch => {
   axios
   .post('/api/users/reset',userEmail)
   .then((res) => {
-    alert('hi')
     dispatch({
       type: SET_ALERT_MSG,
       payload: res.data

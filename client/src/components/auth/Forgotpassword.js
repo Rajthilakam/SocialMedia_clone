@@ -13,8 +13,9 @@ class Forgotpassword extends Component {
         super();
         this.state = {
             useremail:'',
-            message:'',
-            alert:{},
+            alert:{
+                message:''
+            },
             errors:{}
         }
 
@@ -57,8 +58,8 @@ class Forgotpassword extends Component {
 
     componentWillReceiveProps(nextProps){
 
-        if (nextProps.message){
-            this.setState({message: nextProps.message});
+        if (nextProps.alert){
+            this.setState({alert: nextProps.alert});
           }
 
         if (nextProps.errors){
@@ -70,8 +71,8 @@ class Forgotpassword extends Component {
     render() {
 
         const useremail = this.state.errors.useremail
-        const {alert} = this.state
-        const message = this.state
+        const message = this.state.alert.message
+       
         return (
             <div>
                 <Link to="#" data-toggle="modal" data-target="#passwordModal">Forgot Password</Link>
@@ -87,7 +88,7 @@ class Forgotpassword extends Component {
                             </div>
                             <div class="modal-body">
                              {message ? (<div className="alert alert-primary" role="alert">
-                               message
+                               {message}
                             </div>) : ''}  
                             
                                 <form noValidate onSubmit={this.onSubmit.bind(this)}>

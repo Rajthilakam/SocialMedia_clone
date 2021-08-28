@@ -8,7 +8,8 @@ export default class NewPassword extends Component {
         super();
         this.state = {
             email:'',
-            errors:{}
+            errors:{},
+            message:''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -39,6 +40,7 @@ export default class NewPassword extends Component {
 
     render() {
         const {errors} = this.state
+        const message = this.state.message
         return (
             <div>
                 <form noValidate onSubmit={this.onSubmit}>
@@ -52,8 +54,11 @@ export default class NewPassword extends Component {
                                 id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                                  {errors.email ? (
                                 <div className="invalid-feedback">{errors.email}</div>):''}
-
+                            
                             </div>
+                            {message ? (<div className="alert alert-primary" role="alert">
+                               message
+                            </div>) : ''}  
                             <button type="submit"  className="btn btn-primary">Submit</button>
                     </form>         
             </div>

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {loginUser} from '../../action/authActions';
 import PropTypes from 'prop-types';
 import Forgotpassword from './Forgotpassword';
+//import Forgotpassword from './Forgotpassword';
 //import { withRouter } from 'react-router-dom';
 
 
@@ -90,9 +92,11 @@ class Login extends Component {
                             </div>                           
 
                             <button type="submit"  className="btn btn-primary">Submit</button>
-                            
-                            <Forgotpassword/>
                         </form>
+
+                        <div>
+                                <Forgotpassword/>
+                        </div>
                     </div>
                 </div>
             </div>

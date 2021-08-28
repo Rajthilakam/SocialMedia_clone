@@ -11,6 +11,8 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { logoutUser } from './action/authActions';
 import NewsFeed from './components/landing/NewsFeed';
+//import Forgotpassword from './components/auth/Forgotpassword';
+//import NewPassword from './components/auth/NewPassword';
 
 
 
@@ -50,6 +52,7 @@ function App(props) {
     <div className="App">
       <Route exact path = '/' component={Register}></Route>  
       <Route exact path = '/login' component={Login}></Route>
+      
       <Route exact path = '/newsfeed' component={NewsFeed}></Route>
 
 

@@ -146,7 +146,7 @@ _route.post('/login',(req,res) => {
 
 //@Routes GET    Route
 //@desc Forget Password
-//@access Private
+//@access Public
 _route.post('/reset',(req,res) => {
 
     crypto.randomBytes(32,(err,buffer)=>{
@@ -161,7 +161,7 @@ _route.post('/reset',(req,res) => {
         User.findOne({email:req.body.email})
         .then(user=>{
             if(!user){
-                return res.status(422).json({error:"User dont exists with that email"})
+                return res.status(404).json({email:"Please use the registered email"})
             }
             user.resetToken = token
             user.expireToken = Date.now() + 3600000

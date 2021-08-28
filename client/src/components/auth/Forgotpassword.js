@@ -2,15 +2,19 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import classnames from 'classnames';
+import {forgotPassword} from '../../action/authActions';
 
 class Forgotpassword extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            email:'',
-            successmsg:false,
+            useremail:'',
+            message:'',
+            alert:{},
             errors:{}
         }
 
@@ -26,33 +30,53 @@ class Forgotpassword extends Component {
         e.preventDefault();
         
         const userEmail = {
-          email: this.state.email     
+          useremail: this.state.useremail     
         };
         console.log(userEmail)  
+
+        this.props.forgotPassword(userEmail)
         
-         axios
-        .post('/api/users/reset',userEmail)
-        .then(res=> {
+         //axios
+        //.post('/api/users/reset',userEmail)
+        //.then(res=> {
             
-            this.setState({errors:{}})
-            this.setState({email:''})
-            this.setState({successmsg:false})
-            console.log(this.state.successmsg)
-            return console.log(res.data)})
-        .catch(err=>
-            this.setState({errors:err.response.data}))
-    }  
+            //this.setState({errors:{}})
+            //this.setState({email:''})
+           
+            //console.log(this.state.message)
+            //return console.log(res.data)})
+        //.catch(err=> 
+
+            //console.log(err))
+           
+        
+    }
+
+    
+
+
+    componentWillReceiveProps(nextProps){
+
+        if (nextProps.message){
+            this.setState({message: nextProps.message});
+          }
+
+        if (nextProps.errors){
+          this.setState({errors: nextProps.errors});
+        }
+      }
 
 
     render() {
 
-        const {errors} = this.state 
-        const {successmsg} = this.state
+        const useremail = this.state.errors.useremail
+        const {alert} = this.state
+        const message = this.state
         return (
             <div>
-                <Link to="#" data-toggle="modal" data-target="#exampleModal">Edit Profile</Link>
+                <Link to="#" data-toggle="modal" data-target="#passwordModal">Forgot Password</Link>
                 
-                <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -62,23 +86,23 @@ class Forgotpassword extends Component {
                                 </button>
                             </div>
                             <div class="modal-body">
-                                {successmsg ? (
-                            <div className="alert alert-primary" role="alert">
-                                An Email has been sent to reset the password!
-                            </div>) : '' }
+                             {message ? (<div className="alert alert-primary" role="alert">
+                               message
+                            </div>) : ''}  
+                            
                                 <form noValidate onSubmit={this.onSubmit.bind(this)}>
                                 <div className="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
                                         <input type="email" 
-                                        name = "email"
-                                        value = {this.state.email}
-                                        className = {classnames('form-control', {'is-invalid': errors.email})} 
+                                        name = "useremail"
+                                        value = {this.state.useremail}
+                                        className = {classnames('form-control', {'is-invalid': useremail})} 
                                         id="exampleInputEmail1" 
                                         onChange= {this.onChange.bind(this)} 
                                         aria-describedby="emailHelp" 
                                         placeholder="Enter email"/>
-                                        {errors.email ? (
-                                            <div className="invalid-feedback">{errors.email}</div>):''}                                        
+                                        {useremail ? (
+                                            <div className="invalid-feedback">{useremail}</div>):''}                                        
                                     </div>
                                     <button type="submit" className="btn btn-primary" >Save changes</button>
                                 </form>
@@ -95,6 +119,19 @@ class Forgotpassword extends Component {
     }
 }
 
+Forgotpassword.propTypes = {  
+    forgotPassword:PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    alert:PropTypes.object.isRequired
+    
+  };
+
+const mapStateToProps = (state) => ({
+    errors: state.errors,
+    message: state.message,
+    alert:state.alert
+  });
 
 
-export default Forgotpassword;
+export default connect(mapStateToProps, { forgotPassword})(Forgotpassword);
+

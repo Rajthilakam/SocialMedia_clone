@@ -1,5 +1,6 @@
 import { SET_CURRENT_USER } from "./types";
 import { GET_ERRORS } from "./types";
+import { SET_ALERT_MSG } from "./types";
 import axios from "axios";
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
@@ -36,8 +37,6 @@ export const loginUser = (userData,history) => dispatch => {
       type: SET_CURRENT_USER,
       payload: decoded,
     });
-
-    //history.push('/newsfeed')
   })
   .catch((err) =>
     dispatch({
@@ -60,3 +59,24 @@ export const logoutUser = () => dispatch => {
   });
 }
 
+//FORGOT PASSWORD
+
+export const forgotPassword = (userEmail) => dispatch => {
+
+  axios
+  .post('/api/users/reset',userEmail)
+  .then((res) => {
+    alert('hi')
+    dispatch({
+      type: SET_ALERT_MSG,
+      payload: res.data
+    });
+  }
+      )
+  .catch((err) =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    })
+  )
+}

@@ -158,10 +158,10 @@ _route.post('/reset',(req,res) => {
 
         const token = buffer.toString("hex")
 
-        User.findOne({email:req.body.email})
+        User.findOne({email:req.body.useremail})
         .then(user=>{
             if(!user){
-                return res.status(404).json({email:"Please use the registered email"})
+                return res.status(404).json({useremail:"Please use the registered email"})
             }
             user.resetToken = token
             user.expireToken = Date.now() + 3600000
@@ -175,15 +175,15 @@ _route.post('/reset',(req,res) => {
                     html:`
                     <p>You requested for password reset</p>
                     <p>${token}</p>
-                    <h5>click in this <a href="http://localhost:7000/reset/${token}">link</a> to reset password</h5>
+                    <h5>click in this <a href="http://localhost:3000/newpassword/${token}">link</a> to reset password</h5>
                     `
                 })
-                res.json({message:"An Email has beeen sent"})
+                res.json({message:"An Email has beeen sent to reset the password."})
             })
 
         })
         .catch(err => {
-            re.json(err)
+            res.json(err)
         })
     })
 })

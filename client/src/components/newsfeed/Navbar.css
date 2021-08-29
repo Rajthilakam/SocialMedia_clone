@@ -1,0 +1,21 @@
+.navbar {
+    background-color: white;
+    height:70px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}  
+
+.form-control {
+    border-radius: 50px;
+} 
+
+.form-group input {
+  outline: 0;
+  border-width: 0 0 2px;
+  /*border: black;*/
+  border-radius:25px;
+  margin-top:15px;
+}
+
+input:focus {
+  border-color: blue
+}

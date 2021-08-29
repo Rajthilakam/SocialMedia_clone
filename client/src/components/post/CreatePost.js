@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class RightNavbar extends Component {
+export default class CreatePost extends Component {
     render() {
         return (
             <div>

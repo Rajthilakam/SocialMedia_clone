@@ -1,0 +1,23 @@
+.sidebarfont {
+    font-size: 20px;
+    cursor: pointer;
+    color:black;
+    padding:8px;
+  }
+
+  .sidenav {
+    padding: 6px 8px 6px 16px;
+  }
+  
+  .icons {
+    padding:10px;
+  }
+  
+  li {
+    list-style-type: none;
+  
+  }
+  
+  a:hover, a:visited, a:link, a:active{
+    text-decoration:none;
+  } 

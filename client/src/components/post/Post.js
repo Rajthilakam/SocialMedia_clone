@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class RightNavbar extends Component {
+class Post extends Component {
     render() {
         return (
             <div>
@@ -9,3 +9,6 @@ export default class RightNavbar extends Component {
         )
     }
 }
+
+
+export default Post

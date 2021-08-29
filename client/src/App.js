@@ -10,7 +10,7 @@ import { withRouter } from 'react-router';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { logoutUser } from './action/authActions';
-import NewsFeed from './components/landing/NewsFeed';
+import NewsFeed from './components/newsfeed/NewsFeed';
 //import Forgotpassword from './components/auth/Forgotpassword';
 import NewPassword from './components/auth/NewPassword';
 

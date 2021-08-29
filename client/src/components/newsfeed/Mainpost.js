@@ -4,6 +4,7 @@ import Leftnavbar from './Leftnavbar';
 import Createstory from '../story/Createstory';
 import Nomorepost from './Nomorepost';
 import Sponsored from './Sponsored';
+import CreatePost from '../post/CreatePost';
 
 
 export default class Mainpost extends Component {
@@ -15,13 +16,12 @@ export default class Mainpost extends Component {
                 </div>
                 <div className="col-md-5 col-sm-4">
                     <Createstory />
-                    <Nomorepost />
-                    
+                    <CreatePost/>
+                    <Nomorepost />                    
                 </div>
                 <div className="col-md-3 col-sm-3 mt-4 d-sm-none d-md-none d-lg-block d-xl-block">
                     <h4>Sponsored</h4>
-                    <Sponsored/>
-                
+                    <Sponsored/>                
                 </div>
 
             </div>

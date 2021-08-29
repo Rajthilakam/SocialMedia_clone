@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Sponsored.css';
+import kalacademy from '../../photos/Kalacademy.jpg';
+import wit from '../../photos/women-in-tech-2020.jpg'
 
 export default class Sponsored extends Component {
     render() {
@@ -9,7 +11,7 @@ export default class Sponsored extends Component {
                     <div className="media">
                         <img
                             className="mr-3"
-                            src="/photos/Kalacademy.jpg"
+                            src= {kalacademy}
                             alt="Kal Academy"
                         />
                         <div className="media-body">
@@ -26,7 +28,7 @@ export default class Sponsored extends Component {
                     <div className="media">
                         <img
                             className="mr-3"
-                            src="/photos/women-in-tech-2020.jpg"
+                            src={wit}
                             alt="Kal Academy"
                         />
                         <div className="media-body">

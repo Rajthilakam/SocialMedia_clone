@@ -1,0 +1,30 @@
+.posttext { 
+    border: none;
+    width: 100%;
+    font-size: 20px;
+}
+
+.postimg{
+    width:100%;
+    object-fit: cover;  
+    padding-top: 20px;      
+}
+
+.share-icons {
+    cursor: pointer;
+    margin-top:20px;
+    display:flex;
+    padding-right: 10px;
+    justify-content: space-between;
+  }
+
+ 
+  .posttext { 
+    border: none;
+    width: 100%;
+    font-size: 20px;
+}
+
+.posttext:focus {
+    outline: none;
+}

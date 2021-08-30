@@ -3,6 +3,26 @@ import Avatar from '../common/Avatar';
 import './Postmodal.css';
 
 export default class Postmodal extends Component {
+
+    constructor(){
+        super()
+        this.state = {
+            userid:'',
+            file:'',
+            text:'',
+            image:'',
+
+        }
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(event) {
+        this.setState(this.file = event.target.files[0])
+    }
+
+    
+
+
     render() {
         return (
             <div className="modal fade"
@@ -48,13 +68,16 @@ export default class Postmodal extends Component {
                                     <div className="col">
                                         <input type="text" class="posttext" autofocus placeholder="What's on your mind Mo?" />
 
-                                        <div class="postimg">
-                                            <img
-                                                src=""
-                                                class="postimg"
-                                                alt="Pizza"
-                                            />
-                                        </div>
+                                        {this.file && (
+                                             <div class="postimg">
+                                             <img
+                                                 src= {URL.createObjectURL(this.file)}
+                                                 class="postimg"
+                                                 alt="Pizza"
+                                             />
+                                         </div>
+                                        )}
+                                       
 
                                         <form action="">
                                             <div class="share-icons">
@@ -63,7 +86,15 @@ export default class Postmodal extends Component {
                                                     <span style={{ fontSize: 30, color: "lightgreen" }}>
                                                         <i class="fas fa-image" data-toggle="tooltip" data-placement="top" title="photos/Videos" ></i>
                                                     </span>
-                                                    <input id="fileInput" type="file" style={{ display: "none" }} accept=".png,.jpeg,.jpg" />
+                                                    <input id="fileInput" 
+                                                    name="file"
+                                                    value = {this.state.file}
+                                                    type="file" 
+                                                    style={{ display: "none" }} 
+                                                    accept=".png,.jpeg,.jpg"
+                                                    onChange={this.onChange.bind(this)} 
+                                                    
+                                                    />
                                                 </label>
                                                 <span style={{ fontSize: 30, color: "orange" }}>
                                                     <i class="fas fa-tags" data-toggle="tooltip" data-placement="top" title="Tag"></i>

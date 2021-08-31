@@ -70,7 +70,7 @@ class Postmodal extends Component {
 
                 this.props.addPost(newPost)
 
-                this.setState({file:''}); 
+                this.setState(this.file = ''); 
                 this.setState({text:''}); 
 
                 console.log(this.props.posts.postedbyuser.lastname)
@@ -88,7 +88,7 @@ class Postmodal extends Component {
 
     render() {
 
-        const { errors } = this.state;
+        
 
         return (
             <div className="modal fade"

@@ -28,7 +28,7 @@ export default class Sponsored extends Component {
                     <div className="media">
                         <img
                             className="mr-3"
-                            src={wit}
+                            src={'https://res.cloudinary.com/socialmediaapp/image/upload/v1630202781/sample.jpg'}
                             alt="Kal Academy"
                         />
                         <div className="media-body">

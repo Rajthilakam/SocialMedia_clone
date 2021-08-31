@@ -7,20 +7,76 @@ export default class Postmodal extends Component {
     constructor(){
         super()
         this.state = {
-            userid:'',
+            
             file:'',
             text:'',
             image:'',
+            errors:{
+
+            }
 
         }
         this.onChange = this.onChange.bind(this);
+        this.imageUpload = this.imageUpload.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
+       
+
     }
 
-    onChange(event) {
-        this.setState(this.file = event.target.files[0])
+    onChange(e) {
+        this.setState({[e.target.name]:e.target.value})
+        //this.setState({text :this.state.text})
+        //this.setState(this.file = e.target.files[0]);
     }
 
-    
+    imageUpload(e) {
+        if(e.target.files) {
+            this.setState(this.file = e.target.files[0])
+        }        
+    }        
+        
+    onSubmit(e) {
+        e.preventDefault();
+
+        //const {user} = this.state.auth
+
+        console.log('in on submit')
+
+        const data = new FormData()
+            data.append("file",this.file)
+            data.append("upload_preset",'SocialMedia')
+            data.append("cloud-name",'socialmediaapp')
+
+            fetch('https://api.cloudinary.com/v1_1/socialmediaapp/image/upload',{
+                method:"post",
+                body:data
+            }
+            )
+            .then(res => res.json())
+            .then(data => {  
+               console.log(data.url) 
+               this.setState({file:data.url}); 
+               const newPost = {
+                text:this.state.text,
+                file:this.state.file,
+                //postedbyuser:user.name
+                }   
+                
+                console.log(newPost)
+                
+                this.setState({file:''}); 
+                this.setState({text:''}); 
+               
+            })
+           
+            .catch(err => {
+                console.log(err)
+            })            
+
+    }
+
+
 
 
     render() {
@@ -43,7 +99,7 @@ export default class Postmodal extends Component {
                             </h5>
                             <button
                                 type="button"
-                                class="close"
+                                className="close"
                                 data-dismiss="modal"
                                 aria-label="Close"
                             >
@@ -55,7 +111,7 @@ export default class Postmodal extends Component {
                         <div className="modal-body">
                             <div className="container-fluid">
                                 <div className="row">
-                                    <div class="col-md-2">
+                                    <div className="col-md-2">
                                         <Avatar />
                                     </div>
                                     <div class="col-md-10 pl-0">
@@ -66,50 +122,55 @@ export default class Postmodal extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <input type="text" class="posttext" autofocus placeholder="What's on your mind Mo?" />
-
+                                    <form onSubmit = {this.onSubmit} >
+                                        <input type="text" 
+                                        className="posttext" name="text" 
+                                        value={this.state.text} 
+                                        autofocus 
+                                        onChange={this.onChange} 
+                                        placeholder="What's on your mind Mo?" />
+                                        
                                         {this.file && (
-                                             <div class="postimg">
+                                             <div className="postimg">
                                              <img
                                                  src= {URL.createObjectURL(this.file)}
-                                                 class="postimg"
+                                                 className="postimg"
                                                  alt="Pizza"
                                              />
                                          </div>
-                                        )}
-                                       
+                                        )}   
 
-                                        <form action="">
-                                            <div class="share-icons">
+                                            <div className="share-icons">
                                                 <h5>Share a post</h5>
                                                 <label for="fileInput">
                                                     <span style={{ fontSize: 30, color: "lightgreen" }}>
-                                                        <i class="fas fa-image" data-toggle="tooltip" data-placement="top" title="photos/Videos" ></i>
+                                                        <i className="fas fa-image" data-toggle="tooltip" data-placement="top" title="photos/Videos" ></i>
                                                     </span>
                                                     <input id="fileInput" 
                                                     name="file"
-                                                    value = {this.state.file}
+                                                    
                                                     type="file" 
                                                     style={{ display: "none" }} 
                                                     accept=".png,.jpeg,.jpg"
-                                                    onChange={this.onChange.bind(this)} 
+                                                    onChange={this.imageUpload} 
                                                     
                                                     />
                                                 </label>
                                                 <span style={{ fontSize: 30, color: "orange" }}>
-                                                    <i class="fas fa-tags" data-toggle="tooltip" data-placement="top" title="Tag"></i>
+                                                    <i className="fas fa-tags" data-toggle="tooltip" data-placement="top" title="Tag"></i>
                                                 </span>
                                                 <span style={{ fontSize: 30, color: "red" }}>
-                                                    <i class="fas fa-search-location" data-toggle="tooltip" data-placement="top" title="Location"></i>
+                                                    <i className="fas fa-search-location" data-toggle="tooltip" data-placement="top" title="Location"></i>
                                                 </span>
                                                 <span style={{ fontSize: 30, color: "yellowgreen" }}>
-                                                    <i class="fas fa-skiing-nordic" data-toggle="tooltip" data-placement="top" title="Activity"></i>
+                                                    <i className="fas fa-skiing-nordic" data-toggle="tooltip" data-placement="top" title="Activity"></i>
                                                 </span>
                                             </div>
                                             <button
-                                                type="submit"
-                                                class="btn btn-info float-right"
+                                                type="button"
+                                                className="btn btn-info float-right"
                                                 data-dismiss="modal"
+                                                onClick = {this.onSubmit}
                                             >
                                                 Add Post
                                             </button>

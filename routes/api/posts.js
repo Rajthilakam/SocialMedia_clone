@@ -36,7 +36,7 @@ _route.post('/createpost',
         }   
         const newPost = new Post({
             text:req.body.text,
-            image:req.body.image,
+            image:req.body.file,
             postedbyuser : req.user.id
         })      
 

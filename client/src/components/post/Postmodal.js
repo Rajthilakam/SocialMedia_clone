@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import Avatar from '../common/Avatar';
 import './Postmodal.css';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addPost } from '../../action/postActions';
 
-export default class Postmodal extends Component {
+class Postmodal extends Component {
 
     constructor(){
         super()
@@ -56,17 +59,21 @@ export default class Postmodal extends Component {
             .then(res => res.json())
             .then(data => {  
                console.log(data.url) 
-               this.setState({file:data.url}); 
+               this.setState({file:data.url});
+
                const newPost = {
                 text:this.state.text,
                 file:this.state.file,
-                //postedbyuser:user.name
                 }   
                 
                 console.log(newPost)
-                
+
+                this.props.addPost(newPost)
+
                 this.setState({file:''}); 
                 this.setState({text:''}); 
+
+                console.log(this.props.posts.postedbyuser.lastname)
                
             })
            
@@ -80,6 +87,9 @@ export default class Postmodal extends Component {
 
 
     render() {
+
+        const { errors } = this.state;
+
         return (
             <div className="modal fade"
                 id="postmodal"
@@ -129,6 +139,7 @@ export default class Postmodal extends Component {
                                         autofocus 
                                         onChange={this.onChange} 
                                         placeholder="What's on your mind Mo?" />
+                                        
                                         
                                         {this.file && (
                                              <div className="postimg">
@@ -186,3 +197,21 @@ export default class Postmodal extends Component {
         )
     }
 }
+
+
+
+Postmodal.propTypes = {
+    addPost: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors,
+    posts:state.posts
+  });
+
+
+export default connect(mapStateToProps, { addPost })(Postmodal)

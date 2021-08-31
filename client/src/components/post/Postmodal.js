@@ -71,8 +71,10 @@ class Postmodal extends Component {
                 this.props.addPost(newPost)
 
                 this.setState(this.file = ''); 
-                this.setState({text:''}); 
-
+                //this.setState({
+                    //text: ''
+                  //});
+                  //this.setState({ text: '' });
                 console.log(this.props.posts.postedbyuser.lastname)
                
             })
@@ -93,7 +95,7 @@ class Postmodal extends Component {
         return (
             <div className="modal fade"
                 id="postmodal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalCenterTitle"
                 aria-hidden="true"
@@ -136,7 +138,7 @@ class Postmodal extends Component {
                                         <input type="text" 
                                         className="posttext" name="text" 
                                         value={this.state.text} 
-                                        autofocus 
+                                        autoFocus 
                                         onChange={this.onChange} 
                                         placeholder="What's on your mind Mo?" />
                                         
@@ -153,7 +155,7 @@ class Postmodal extends Component {
 
                                             <div className="share-icons">
                                                 <h5>Share a post</h5>
-                                                <label for="fileInput">
+                                                <label htmlFor="fileInput">
                                                     <span style={{ fontSize: 30, color: "lightgreen" }}>
                                                         <i className="fas fa-image" data-toggle="tooltip" data-placement="top" title="photos/Videos" ></i>
                                                     </span>

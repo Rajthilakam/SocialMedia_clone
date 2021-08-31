@@ -1,0 +1,31 @@
+.topcard {     
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  }
+
+  .postimg {
+      width:100%;
+      object-fit: cover;
+      border-radius: 0px;
+  }
+
+ .card {
+     cursor:pointer
+ }
+
+/* POST BTN DOTS*/
+.editpostbtn{
+    padding: 0;
+  border: none;
+  background: none;
+  }
+  
+  .editpostbtn:focus,.editpostbtn:active {
+    outline: none !important;
+    box-shadow: none;
+    color:gray;
+  }
+  
+  .flexclass {
+    display:flex;
+  }

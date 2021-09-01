@@ -32,7 +32,7 @@ export default class CommentFeed extends Component {
                             <Link className="dropdown-item" href="#">Delete Comment</Link>
                         </div>
                     </div>
-                    <p>hgdfhgjdfhjkgnhkjgnkgfjhkgfknlkljhkljklhnklhnklhnklhvmnkhlkn</p>
+                    <p>hgdfhgjdfhjkgnhkjgnkgfjhkgfknlkljhklj</p>
                 </div>
 
 

@@ -83,6 +83,7 @@ class PostItem extends Component {
                                             Like
                                         </h5>
                                     </button>
+                                    
                                 </div>
                                 <div className="col-md-6 col-sm-4">
                                     <button className="btn likebtn" onClick={this.toggleautofocus}>

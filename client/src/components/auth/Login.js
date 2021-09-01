@@ -15,8 +15,7 @@ class Login extends Component {
         this.state = {
             email: '',
             password:'',
-            errors:{},
-            
+            errors:{},          
         }
 
         this.onChange = this.onChange.bind(this);
@@ -34,7 +33,8 @@ class Login extends Component {
           password: this.state.password,
         };
         console.log(user)
-        this.props.loginUser(user,this.props.history)
+        //this.props.loginUser(user,this.props.history)
+        this.props.loginUser(user)
     }
 
     componentDidMount() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '../common/Avatar';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+//import PropTypes from 'prop-types';
+//import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommentForm from '../comments/CommentForm';
 import './PostItem.css';
@@ -25,10 +25,10 @@ class PostItem extends Component {
         //this.setState(state => ({
             //autoFocus:!state.autoFocus    
         //}));
-        //this.setState ({autoFocus:true})
+        this.setState ({autoFocus:true})
         console.log(this.state.autoFocus)
 
-        this.setState(({ autoFocus }) => ({ autoFocus: !autoFocus }));
+        //this.setState(({ autoFocus }) => ({ autoFocus: !autoFocus }));
     }
     
 
@@ -36,7 +36,9 @@ class PostItem extends Component {
 
     render() {
 
-        const { post, auth, showActions } = this.props;
+        //const { post, auth, showActions } = this.props;
+
+        //const {user} = this.props.auth
 
         return (
             <div className="row">
@@ -51,7 +53,7 @@ class PostItem extends Component {
 
                                 <div className="col-lg-10 col-md-10 col-sm-10 pl-md-2 pl-lg-4">
 
-                                    <h5 className="d-inline">Mohita Sai Karthik</h5>
+                                    <h5 className="d-inline">Mohita</h5>
                                     <div className="dropleft float-right">
                                         <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <h2 >...</h2>
@@ -66,7 +68,7 @@ class PostItem extends Component {
                                 </div>
                             </div>
 
-                            <h6 className="mt-3">Hello There</h6>
+                            <h6 className="mt-3">text</h6>
 
                             <div className="row">
                                 <div className="col">
@@ -114,5 +116,7 @@ class PostItem extends Component {
 
     }
 }
+
+
 
 export default PostItem

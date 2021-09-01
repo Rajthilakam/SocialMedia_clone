@@ -9,6 +9,7 @@ export const addPost = postData => dispatch => {
     axios
       .post('/api/posts/createpost', postData)
       .then(res =>
+        
         dispatch({
           type: ADD_POST,
           payload: res.data

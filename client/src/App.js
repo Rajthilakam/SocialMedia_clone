@@ -1,6 +1,6 @@
 
 import './App.css';
-import {BrowserRouter as Router,Route,Redirect} from 'react-router-dom';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
@@ -29,8 +29,8 @@ function App(props) {
     //Logout user
     store.dispatch(logoutUser());
     //Redirect user login
-    //window.location.href = "/login";
-    props.history.push('/login')
+    window.location.href = "/login";
+    //props.history.push('/login')
   }
     //Set auth header
     
@@ -41,26 +41,23 @@ function App(props) {
       payload: decoded,
     });
     
-    //props.history.push('/newsfeed')
-    //window.location.href = "/newsfeed";
+    
   
     
   }
   return (
     <Provider store={store}>
-    
+  <Router>
     <div className="App">
       <Route exact path = '/' component={Register}></Route>  
       <Route exact path = '/login' component={Login}></Route>
       <Route  exact path = '/newpassword/:token' component={NewPassword}></Route>
       <Route exact path = '/newsfeed' component={NewsFeed}></Route>
 
-
-
     </div>
-    
+  </Router>    
     </Provider>
   );
 }
 
-export default withRouter(App);
+export default App;

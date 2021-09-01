@@ -37,7 +37,16 @@ class Postmodal extends Component {
         if(e.target.files) {
             this.setState(this.file = e.target.files[0])
         }        
-    }        
+    }    
+    
+    functionThatResetsTheFileInput() {
+        let randomString = Math.random().toString(36);
+      
+        this.setState({
+          theInputKey: randomString
+        });
+      }
+      
         
     onSubmit(e) {
         e.preventDefault();
@@ -67,18 +76,20 @@ class Postmodal extends Component {
                 console.log(newPost)
 
                 this.props.addPost(newPost)
-                
-                
-                this.setState({ text: '' });
 
-                this.setState(this.file = ''); 
+                this.functionThatResetsTheFileInput()
+                
+                //this.fileInput.value = ""
+                //this.setState({ text: '' });
+
+                this.setState({file : ''}); 
                 //this.setState({
                     //text: ''
                   //});
-                  //this.setState({ text: '' });
+                  
 
                   
-                console.log(this.props.posts.postedbyuser.lastname)
+                
                
             })
            
@@ -107,6 +118,7 @@ class Postmodal extends Component {
 
     render() {
 
+        const {errors} = this.state
         const { user } = this.props.auth
 
         return (
@@ -157,7 +169,8 @@ class Postmodal extends Component {
                                         value={this.state.text} 
                                         ref={this.innerRef} 
                                         autoFocus = {false} 
-                                        onChange={this.onChange} 
+                                        onChange={this.onChange}
+                                        error={errors.text} 
                                         placeholder= "Whats on your Mind!!!!!!!!"/>
                                         
                                         
@@ -184,6 +197,8 @@ class Postmodal extends Component {
                                                     style={{ display: "none" }} 
                                                     accept=".png,.jpeg,.jpg"
                                                     onChange={this.imageUpload} 
+                                                    key={this.state.theInputKey || '' } 
+                                                    
                                                     
                                                     />
                                                 </label>

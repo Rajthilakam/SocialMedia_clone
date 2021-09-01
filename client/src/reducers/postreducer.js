@@ -11,6 +11,7 @@ const initialState = {
 
     switch (action.type) {
     case ADD_POST:
+      console.log(action.payload)
       return {
         ...state,
         posts: [action.payload, ...state.posts]

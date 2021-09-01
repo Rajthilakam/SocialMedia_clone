@@ -30,13 +30,14 @@ _route.get('/allposts',(req,res) => {
 _route.post('/createpost',
             passport.authenticate('jwt',{session:false}),
             (req,res) => {
-        const { errors, isValid } = validatePostInput(req.body);
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }   
+              const { errors, isValid } = validatePostInput(req.body);
+              if (!isValid) {
+                  return res.status(400).json(errors);
+              }       
+          
         const newPost = new Post({
-            text:req.body.text,
-            image:req.body.file,
+            text:req.body.text?req.body.text:'',
+            image:req.body.file?req.body.file:'',
             postedbyuser : req.user.id
         })      
 

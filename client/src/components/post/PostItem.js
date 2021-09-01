@@ -6,9 +6,31 @@ import { Link } from 'react-router-dom';
 import CommentForm from '../comments/CommentForm';
 import './PostItem.css';
 import Mountain from '../../photos/Mountain.jpg'
+import CommentFeed from '../comments/CommentFeed';
 
 class PostItem extends Component {
+       
+    constructor(props){
+        super(props)
+        this.state = {
+            autoFocus:false
+        }
 
+        //this.onClick = this.onClick.bind(this)
+        this.toggleautofocus = this.toggleautofocus.bind(this);
+    }
+
+    toggleautofocus () {
+        //console.log(e)
+        //this.setState(state => ({
+            //autoFocus:!state.autoFocus    
+        //}));
+        //this.setState ({autoFocus:true})
+        console.log(this.state.autoFocus)
+
+        this.setState(({ autoFocus }) => ({ autoFocus: !autoFocus }));
+    }
+    
 
 
 
@@ -55,16 +77,20 @@ class PostItem extends Component {
 
                             <div className="row text-center mt-3">
                                 <div className="col-md-6 col-sm-4">
-                                    <h5>
-                                        <i className="far fa-thumbs-up fa-lg"></i>
-                                        Like
-                                    </h5>
+                                    <button className="btn likebtn">
+                                        <h5>
+                                            <i className="far fa-thumbs-up fa-lg fa-fw"></i>
+                                            Like
+                                        </h5>
+                                    </button>
                                 </div>
                                 <div className="col-md-6 col-sm-4">
-                                    <h5>
-                                        <i className="far fa-comment fa-lg "></i>
-                                        Comment
-                                    </h5>
+                                    <button className="btn likebtn" onClick={this.toggleautofocus}>
+                                        <h5>
+                                            <i className="far fa-comment fa-lg fa-fw"></i>
+                                            Comment
+                                        </h5>
+                                    </button>
                                 </div>
                             </div>
 
@@ -74,15 +100,8 @@ class PostItem extends Component {
                                     <hr />
                                 </div>
                             </div>
-
-                            <CommentForm />
-
-
-
-
-
-
-
+                            <CommentForm autoFocus={this.state.autoFocus} />
+                            <CommentFeed/>
                         </div>
                     </div>
                 </div>

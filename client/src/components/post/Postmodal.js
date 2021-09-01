@@ -9,13 +9,11 @@ class Postmodal extends Component {
 
     constructor(){
         super()
-        this.state = {
-            
+        this.innerRef = React.createRef()
+        this.state = {           
             file:'',
-            text:'',
-            image:'',
+            text:'',            
             errors:{
-
             }
 
         }
@@ -69,12 +67,17 @@ class Postmodal extends Component {
                 console.log(newPost)
 
                 this.props.addPost(newPost)
+                
+                
+                this.setState({ text: '' });
 
                 this.setState(this.file = ''); 
                 //this.setState({
                     //text: ''
                   //});
                   //this.setState({ text: '' });
+
+                  
                 console.log(this.props.posts.postedbyuser.lastname)
                
             })
@@ -85,7 +88,15 @@ class Postmodal extends Component {
 
     }
 
+    componentDidMount(){
+        setTimeout(() => {
+            this.innerRef.current.focus();
+          }, 1)
 
+          this.setState(({text}) => ({
+            text:''
+          }));
+      }
 
 
     render() {
@@ -138,7 +149,8 @@ class Postmodal extends Component {
                                         <input type="text" 
                                         className="posttext" name="text" 
                                         value={this.state.text} 
-                                        autoFocus 
+                                        ref={this.innerRef} 
+                                        autoFocus = {false} 
                                         onChange={this.onChange} 
                                         placeholder="What's on your mind Mo?" />
                                         

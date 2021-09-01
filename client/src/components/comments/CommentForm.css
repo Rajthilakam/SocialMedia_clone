@@ -5,7 +5,7 @@
   }
   
   input:focus {
-    border-color: blue
+    border-color: none
   }
 
   #comments {
@@ -15,11 +15,9 @@
     height: 15px;   
   }
 
-  h5 {
-      font-family: sans-serif;
-      font-size: large;
-  }
+  
 
   p {
     font-size: large;
 }
+

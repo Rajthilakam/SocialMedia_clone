@@ -3,9 +3,15 @@ import Mountain from '../../photos/Mountain.jpg';
 import './CommentForm.css'
 
 export default class CommentForm extends Component {
+
+    
     render() {
+
+        console.log(this.props.autoFocus)
         return (
-            
+                
+               
+                
                 <div className="row">
                   
                   <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
@@ -20,7 +26,7 @@ export default class CommentForm extends Component {
                   <div className="col-md-11">
                     <form>
                       <div className="form-group">                         
-                        <input type="text" className="form-control" id="comments"  placeholder="Write a Comment....."/>
+                        <input type="text" autoFocus={this.props.autoFocus} className="form-control" id="comments"  placeholder="Write a Comment....."/>
                       </div>
                     </form>  
                 </div>

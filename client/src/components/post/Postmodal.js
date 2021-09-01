@@ -88,6 +88,12 @@ class Postmodal extends Component {
 
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.errors) {
+          this.setState({ errors: newProps.errors });
+        }
+      }
+
     componentDidMount(){
         setTimeout(() => {
             this.innerRef.current.focus();

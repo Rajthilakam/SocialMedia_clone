@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './CommentFeed.css';
+import './CommentItem.css';
 import Mountain from '../../photos/Mountain.jpg'
 
 export default class CommentFeed extends Component {

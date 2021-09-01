@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import CommentForm from '../comments/CommentForm';
 import './PostItem.css';
 import Mountain from '../../photos/Mountain.jpg'
-import CommentFeed from '../comments/CommentFeed';
+import CommentFeed from '../comments/CommentItem.js';
 
 class PostItem extends Component {
        

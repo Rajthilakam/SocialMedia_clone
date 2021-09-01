@@ -35,6 +35,9 @@ class PostItem extends Component {
 
 
     render() {
+
+        const { post, auth, showActions } = this.props;
+
         return (
             <div className="row">
                 <div className="col">

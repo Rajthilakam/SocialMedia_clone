@@ -7,6 +7,8 @@ import { addPost } from '../../action/postActions';
 
 class Postmodal extends Component {
 
+   
+
     constructor(){
         super()
         this.innerRef = React.createRef()
@@ -39,8 +41,6 @@ class Postmodal extends Component {
         
     onSubmit(e) {
         e.preventDefault();
-
-        //const {user} = this.state.auth
 
         console.log('in on submit')
 
@@ -107,7 +107,7 @@ class Postmodal extends Component {
 
     render() {
 
-        
+        const { user } = this.props.auth
 
         return (
             <div className="modal fade"
@@ -141,10 +141,10 @@ class Postmodal extends Component {
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col-md-2">
-                                        <Avatar />
+                                        <Avatar src={user.avatar} />
                                     </div>
                                     <div class="col-md-10 pl-0">
-                                        <h5>Mohita Sai Karthik</h5>
+                                        <h5>{user.name}</h5>
                                         <p pt-0>August 6th at 12.00 PM</p>
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@ class Postmodal extends Component {
                                         ref={this.innerRef} 
                                         autoFocus = {false} 
                                         onChange={this.onChange} 
-                                        placeholder="What's on your mind Mo?" />
+                                        placeholder= "Whats on your Mind!!!!!!!!"/>
                                         
                                         
                                         {this.file && (
@@ -166,7 +166,7 @@ class Postmodal extends Component {
                                              <img
                                                  src= {URL.createObjectURL(this.file)}
                                                  className="postimg"
-                                                 alt="Pizza"
+                                                 alt="Pic"
                                              />
                                          </div>
                                         )}   

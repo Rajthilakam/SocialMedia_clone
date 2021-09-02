@@ -1,4 +1,4 @@
-import {ADD_POST,GET_POSTS,DELETE_POST} from './types';
+import {ADD_POST,GET_POSTS,GET_POST,DELETE_POST} from './types';
 import axios from "axios";
 import { CLEAR_ERRORS,GET_ERRORS,POST_LOADING} from './types';
 
@@ -27,7 +27,7 @@ export const addPost = postData => dispatch => {
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading());
   axios
-    .post('/api/profile/userfollow/post')
+    .post('/api/profile/friendfollow/post')
     .then(res =>
       dispatch({
         type: GET_POSTS,
@@ -41,6 +41,49 @@ export const getPosts = () => dispatch => {
       })
     );
 };
+
+//Get Post by id
+
+export const getPost = postid => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/${postid}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POST,
+        payload: null
+      })
+    );
+};
+
+// Add Comment
+export const addComment = (postId, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`/api/posts/comment/${postId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
+
+
 
 
 //deletepost

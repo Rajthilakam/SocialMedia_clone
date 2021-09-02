@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './CommentItem.css';
 import Mountain from '../../photos/Mountain.jpg'
 
-export default class CommentFeed extends Component {
+export default class CommentItem extends Component {
     render() {
         return (
             <div className="row">

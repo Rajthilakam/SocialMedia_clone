@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import CommentForm from '../comments/CommentForm';
 import { deletePost } from '../../action/postActions';
 import './PostItem.css';
-import CommentFeed from '../comments/CommentItem.js';
+import CommentFeed from '../comments/CommentFeed';
+import CommentItem from '../comments/CommentItem.js';
 
 class PostItem extends Component {
 
@@ -50,41 +51,9 @@ class PostItem extends Component {
 
     render() {
 
-        const { post, auth, showActions } = this.props;
+        const { post, auth } = this.props;
 
-        const { user } = this.props.auth
-
-        let authcontent, nonauthcontent;
-
-        authcontent = (
-            <div className="dropleft float-right">
-                <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h2 >...</h2>
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <Link className="dropdown-item" to="#" onClick={this.onSave.bind(this, post._id)}>Save Post</Link>
-                    <Link className="dropdown-item" to="#" onClick={this.onEdit}>Edit Post</Link>
-                    <Link className="dropdown-item" to="#" onClick={this.onDelete.bind(this, post._id)}>Delete Post</Link>
-                </div>
-            </div>
-        )
-
-        nonauthcontent = (
-
-            <div className="dropleft float-right">
-                <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h2 >...</h2>
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <Link className="dropdown-item" to="#" onClick={this.onSave.bind(this, post._id)}>Save Post</Link>
-                </div>
-            </div>
-
-        )
-
-
-
-
+        //const { user } = this.props.auth
 
 
         return (
@@ -123,15 +92,7 @@ class PostItem extends Component {
                                             </div>
                                         </div>
                                     )
-
-
-
                                     }
-
-
-
-
-
                                     <p pt-0 className="d-block">August 6th at 12.00 PM</p>
                                 </div>
                             </div>
@@ -175,7 +136,8 @@ class PostItem extends Component {
                                 </div>
                             </div>
                             <CommentForm autoFocus={this.state.autoFocus} />
-                            <CommentFeed />
+                            
+                            <CommentItem />
                         </div>
                     </div>
                 </div >

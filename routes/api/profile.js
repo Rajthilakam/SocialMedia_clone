@@ -309,7 +309,8 @@ _route.post('/friendfollow/post',
 
                 //for (let obj in profile.following) {
                     //if (!obj.user === undefined) {
-                        if ((profile.following).length >= 1){
+                        //if ((profile.following).length >= 1)
+                        if((profile.following)!=null){
                         const followpost = profile.following.map(following => following.user)
                         console.log(followpost)
 

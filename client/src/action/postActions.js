@@ -1,4 +1,4 @@
-import {ADD_POST,GET_POSTS} from './types';
+import {ADD_POST,GET_POSTS,DELETE_POST} from './types';
 import axios from "axios";
 import { CLEAR_ERRORS,GET_ERRORS,POST_LOADING} from './types';
 
@@ -38,6 +38,25 @@ export const getPosts = () => dispatch => {
       dispatch({
         type: GET_POSTS,
         payload: null
+      })
+    );
+};
+
+
+//deletepost
+export const deletePost = id => dispatch => {
+  axios
+    .delete(`/api/posts/deletepost/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_POST,
+        payload: id
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };

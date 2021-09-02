@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommentForm from '../comments/CommentForm';
+import { deletePost } from '../../action/postActions';
 import './PostItem.css';
-import Mountain from '../../photos/Mountain.jpg'
 import CommentFeed from '../comments/CommentItem.js';
 
 class PostItem extends Component {
@@ -32,8 +32,17 @@ class PostItem extends Component {
         //this.setState(({ autoFocus }) => ({ autoFocus: !autoFocus }));
     }
 
-    onDelete(){
+    onDelete(id){
         console.log('clicked Delete button')
+        this.props.deletePost(id)
+    }
+
+    onEdit(){
+        console.log('clicked Edit button')
+    }
+
+    onSave(){
+        console.log('clicked save button')
     }
     
 
@@ -60,16 +69,17 @@ class PostItem extends Component {
 
                                     <h5 className="d-inline">{post.postedbyuser.name}</h5>
 
+                                    {post.postedbyuser._id === auth.user.id ? (
                                     <div className="dropleft float-right">
                                         <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <h2 >...</h2>
                                         </button>
                                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <Link className="dropdown-item" to="#"  onClick = {this.onLike}>Save Post</Link>
-                                            <Link className="dropdown-item" href="#"  onClick = {this.onEdit}>Edit Post</Link>
-                                            <Link className="dropdown-item" href="#" onClick = {this.onDelete}>Delete Post</Link>
+                                            <Link className="dropdown-item" to="#"  onClick = {this.onSave}>Save Post</Link>
+                                            <Link className="dropdown-item" to="#"  onClick = {this.onEdit}>Edit Post</Link>
+                                            <Link className="dropdown-item" to="#" onClick = {this.onDelete.bind(this, post._id)}>Delete Post</Link>
                                         </div>
-                                    </div>
+                                    </div>) : null }
                                     <p pt-0 className="d-block">August 6th at 12.00 PM</p>
                                 </div>
                             </div>
@@ -124,7 +134,7 @@ class PostItem extends Component {
 }
 
 PostItem.propTypes = {
-    
+    deletePost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -133,4 +143,4 @@ const mapStateToProps = state => ({
     auth: state.auth
   });
 
-export default connect(mapStateToProps, {})(PostItem)
+export default connect(mapStateToProps, {deletePost})(PostItem)

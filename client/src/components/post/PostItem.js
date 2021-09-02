@@ -75,7 +75,7 @@ class PostItem extends Component {
                                             <h2 >...</h2>
                                         </button>
                                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <Link className="dropdown-item" to="#"  onClick = {this.onSave}>Save Post</Link>
+                                            <Link className="dropdown-item" to="#"  onClick = {this.onSave.bind(this, post._id)}>Save Post</Link>
                                             <Link className="dropdown-item" to="#"  onClick = {this.onEdit}>Edit Post</Link>
                                             <Link className="dropdown-item" to="#" onClick = {this.onDelete.bind(this, post._id)}>Delete Post</Link>
                                         </div>

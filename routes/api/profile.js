@@ -244,7 +244,7 @@ _route.post('/following/post',
 )
 
 // @route   POST api/profile/userfollow/:post
-// @desc    Get the users post and friends post in news feed (friends)
+// @desc    Get the users post and followers post in news feed (friends).no post if there is no following
 // @access  Private
 _route.post('/userfollow/post',
     passport.authenticate('jwt', { session: false }),
@@ -253,6 +253,7 @@ _route.post('/userfollow/post',
         Profile.findOne({ user: req.user.id })
             .then(profile => {
                 console.log(profile)
+
 
                 if ((profile.following).length === 0) {
                     return res
@@ -295,7 +296,9 @@ _route.post('/userfollow/post',
 
 
 
-//newroute
+// @route   POST api/profile/friendfollow/:post
+// @desc    Get the users post and friends post in news feed (friends)
+// @access  Private
 _route.post('/friendfollow/post',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -304,8 +307,9 @@ _route.post('/friendfollow/post',
             .then(profile => {
                 console.log(profile)
 
-                for (let obj in profile.following) {
-                    if (!obj.user === undefined) {
+                //for (let obj in profile.following) {
+                    //if (!obj.user === undefined) {
+                        if ((profile.following).length >= 1){
                         const followpost = profile.following.map(following => following.user)
                         console.log(followpost)
 
@@ -325,7 +329,7 @@ _route.post('/friendfollow/post',
                                             const result = friendsPosts.concat(userpost)
                                             const sortedArray = result.sort((a, b) => b.date > a.date ? 1 : -1);
                                             console.log(sortedArray)
-                                            res.json(sortedArray)
+                                            return res.json(sortedArray)
                                         };
                                     })
 
@@ -338,7 +342,7 @@ _route.post('/friendfollow/post',
                             .populate("postedbyuser", "name lastname avatar")
                             .then(post => {
                                 if (Object.keys(post).length > 0) {
-                                    res.json(post)
+                                    return res.json(post)
                                 } else {
                                     res.status(404).json({ nopostfound: 'No post found for the user' })
                                 }
@@ -349,16 +353,12 @@ _route.post('/friendfollow/post',
                             );
                     }
 
-                }
+                
 
             })
             .catch(err => console.log(err))
     }
 )
-
-
-
-
 
 // @route   POST api/profile/followings
 // @desc    show the followers (friends)

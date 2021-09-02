@@ -9,42 +9,42 @@ import './PostItem.css';
 import CommentFeed from '../comments/CommentItem.js';
 
 class PostItem extends Component {
-       
-    constructor(props){
+
+    constructor(props) {
         super(props)
         this.state = {
-            autoFocus:false
+            autoFocus: false
         }
-        this.onDelete = this.onDelete.bind(this) 
-        this.onSave = this.onSave.bind(this) 
-        this.onEdit = this.onEdit.bind(this) 
-               
+        this.onDelete = this.onDelete.bind(this)
+        this.onSave = this.onSave.bind(this)
+        this.onEdit = this.onEdit.bind(this)
+
     }
 
-    toggleautofocus () {
+    toggleautofocus() {
         //console.log(e)
         //this.setState(state => ({
-            //autoFocus:!state.autoFocus    
+        //autoFocus:!state.autoFocus    
         //}));
-        this.setState ({autoFocus:true})
+        this.setState({ autoFocus: true })
         console.log(this.state.autoFocus)
 
         //this.setState(({ autoFocus }) => ({ autoFocus: !autoFocus }));
     }
 
-    onDelete(id){
+    onDelete(id) {
         console.log('clicked Delete button')
         this.props.deletePost(id)
     }
 
-    onEdit(){
+    onEdit() {
         console.log('clicked Edit button')
     }
 
-    onSave(){
+    onSave() {
         console.log('clicked save button')
     }
-    
+
 
 
 
@@ -52,7 +52,40 @@ class PostItem extends Component {
 
         const { post, auth, showActions } = this.props;
 
-        const {user} = this.props.auth
+        const { user } = this.props.auth
+
+        let authcontent, nonauthcontent;
+
+        authcontent = (
+            <div className="dropleft float-right">
+                <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <h2 >...</h2>
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <Link className="dropdown-item" to="#" onClick={this.onSave.bind(this, post._id)}>Save Post</Link>
+                    <Link className="dropdown-item" to="#" onClick={this.onEdit}>Edit Post</Link>
+                    <Link className="dropdown-item" to="#" onClick={this.onDelete.bind(this, post._id)}>Delete Post</Link>
+                </div>
+            </div>
+        )
+
+        nonauthcontent = (
+
+            <div className="dropleft float-right">
+                <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <h2 >...</h2>
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <Link className="dropdown-item" to="#" onClick={this.onSave.bind(this, post._id)}>Save Post</Link>
+                </div>
+            </div>
+
+        )
+
+
+
+
+
 
         return (
             <div className="row">
@@ -62,7 +95,7 @@ class PostItem extends Component {
 
                             <div className="row">
                                 <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <Avatar src={post.postedbyuser.avatar}/>
+                                    <Avatar src={post.postedbyuser.avatar} />
                                 </div>
 
                                 <div className="col-lg-10 col-md-10 col-sm-10 pl-md-2 pl-lg-4">
@@ -70,16 +103,35 @@ class PostItem extends Component {
                                     <h5 className="d-inline">{post.postedbyuser.name}</h5>
 
                                     {post.postedbyuser._id === auth.user.id ? (
-                                    <div className="dropleft float-right">
-                                        <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <h2 >...</h2>
-                                        </button>
-                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <Link className="dropdown-item" to="#"  onClick = {this.onSave.bind(this, post._id)}>Save Post</Link>
-                                            <Link className="dropdown-item" to="#"  onClick = {this.onEdit}>Edit Post</Link>
-                                            <Link className="dropdown-item" to="#" onClick = {this.onDelete.bind(this, post._id)}>Delete Post</Link>
+                                        <div className="dropleft float-right">
+                                            <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <h2 >...</h2>
+                                            </button>
+                                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <Link className="dropdown-item" to="#" onClick={this.onSave.bind(this, post._id)}>Save Post</Link>
+                                                <Link className="dropdown-item" to="#" onClick={this.onEdit}>Edit Post</Link>
+                                                <Link className="dropdown-item" to="#" onClick={this.onDelete.bind(this, post._id)}>Delete Post</Link>
+                                            </div>
                                         </div>
-                                    </div>) : null }
+                                    ) : (
+                                        <div className="dropleft float-right">
+                                            <button className="btn editpostbtn" style={{ border: "none" }} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <h2 >...</h2>
+                                            </button>
+                                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <Link className="dropdown-item" to="#" onClick={this.onSave.bind(this, post._id)}>Save Post</Link>
+                                            </div>
+                                        </div>
+                                    )
+
+
+
+                                    }
+
+
+
+
+
                                     <p pt-0 className="d-block">August 6th at 12.00 PM</p>
                                 </div>
                             </div>
@@ -89,7 +141,7 @@ class PostItem extends Component {
                             <div className="row">
                                 <div className="col">
                                     <img
-                                        src={post.image?post.image:''}
+                                        src={post.image ? post.image : ''}
                                         className="postimg"
                                         alt="Pizza"
                                     />
@@ -104,7 +156,7 @@ class PostItem extends Component {
                                             Like
                                         </h5>
                                     </button>
-                                    
+
                                 </div>
                                 <div className="col-md-6 col-sm-4">
                                     <button className="btn likebtn" onClick={this.toggleautofocus}>
@@ -123,11 +175,11 @@ class PostItem extends Component {
                                 </div>
                             </div>
                             <CommentForm autoFocus={this.state.autoFocus} />
-                            <CommentFeed/>
+                            <CommentFeed />
                         </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         )
 
     }
@@ -137,10 +189,10 @@ PostItem.propTypes = {
     deletePost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
-  };
+};
 
 const mapStateToProps = state => ({
     auth: state.auth
-  });
+});
 
-export default connect(mapStateToProps, {deletePost})(PostItem)
+export default connect(mapStateToProps, { deletePost })(PostItem)

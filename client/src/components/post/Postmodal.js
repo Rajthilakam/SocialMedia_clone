@@ -12,7 +12,8 @@ class Postmodal extends Component {
     constructor(){
         super()
         this.innerRef = React.createRef()
-        this.state = {           
+        this.state = {  
+            fileinputkey:Date.now(),        
             file:'',
             text:'',            
             errors:{
@@ -38,15 +39,7 @@ class Postmodal extends Component {
             this.setState(this.file = e.target.files[0])
         }        
     }    
-    
-    functionThatResetsTheFileInput() {
-        let randomString = Math.random().toString(36);
-      
-        this.setState({
-          theInputKey: randomString
-        });
-      }
-      
+         
         
     onSubmit(e) {
         e.preventDefault();
@@ -77,20 +70,18 @@ class Postmodal extends Component {
 
                 this.props.addPost(newPost)
 
-                this.functionThatResetsTheFileInput()
+                //this.functionThatResetsTheFileInput()
                 
                 //this.fileInput.value = ""
                 //this.setState({ text: '' });
 
-                this.setState({file : ''}); 
+                this.setState({
+                    text : '',
+                    fileinputkey: Date.now()
+                }); 
                 //this.setState({
                     //text: ''
-                  //});
-                  
-
-                  
-                
-               
+                  //});                
             })
            
             .catch(err => {
@@ -197,7 +188,7 @@ class Postmodal extends Component {
                                                     style={{ display: "none" }} 
                                                     accept=".png,.jpeg,.jpg"
                                                     onChange={this.imageUpload} 
-                                                    key={this.state.theInputKey || '' } 
+                                                    key={this.state.fileinputkey} 
                                                     
                                                     
                                                     />

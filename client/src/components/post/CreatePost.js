@@ -13,8 +13,10 @@ class CreatePost extends Component {
     render() {
 
         const { user } = this.props.auth
+        //const {errors} = this.state
 
         return (
+            
             <div className="row">
                 <div className="col">
                     <div className="card mt-3 topcard">

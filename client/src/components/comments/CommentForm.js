@@ -18,9 +18,7 @@ class CommentForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+ 
 
   onSubmit(e) {
     e.preventDefault();
@@ -34,8 +32,14 @@ class CommentForm extends Component {
       avatar: user.avatar
     };
 
+    console.log(postId)
     this.props.addComment(postId, newComment);
     this.setState({ text: '' });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+
   }
 
   componentWillReceiveProps(newProps) {

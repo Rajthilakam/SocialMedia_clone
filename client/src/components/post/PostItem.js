@@ -7,7 +7,7 @@ import CommentForm from '../comments/CommentForm';
 import { deletePost } from '../../action/postActions';
 import './PostItem.css';
 import CommentFeed from '../comments/CommentFeed';
-import CommentItem from '../comments/CommentItem.js';
+//import CommentItem from '../comments/CommentItem.js';
 
 class PostItem extends Component {
 
@@ -135,9 +135,12 @@ class PostItem extends Component {
                                     <hr />
                                 </div>
                             </div>
-                            <CommentForm autoFocus={this.state.autoFocus} />
-                            
-                            <CommentItem />
+                            <CommentForm postId={post._id} />
+                            <CommentFeed postId={post._id} 
+                            comments={post.comments} 
+                            postedbyuser={post.postedbyuser} 
+                            />
+
                         </div>
                     </div>
                 </div >

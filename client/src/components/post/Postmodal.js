@@ -23,9 +23,6 @@ class Postmodal extends Component {
         this.onChange = this.onChange.bind(this);
         this.imageUpload = this.imageUpload.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
-       
-
     }
 
     onChange(e) {

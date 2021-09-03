@@ -75,6 +75,7 @@ _route.post('/register',(req,res) => {
                          //subject:"signup success",
                          //html:"<h1>Welcome to Social Media App</h1>"
                 //})
+                
                 res.json(user)
                 logger.info(`User successfully created id:${user._id} email:${user.email}`)            
             })

@@ -46,8 +46,8 @@ class PostItem extends Component {
         console.log('clicked save button')
     }
 
-
-
+   
+   
 
     render() {
 
@@ -135,10 +135,11 @@ class PostItem extends Component {
                                     <hr />
                                 </div>
                             </div>
-                            <CommentForm postId={post._id} />
+                            <CommentForm postId={post._id} key={post._id} />
                             <CommentFeed postId={post._id} 
                             comments={post.comments} 
                             postedbyuser={post.postedbyuser} 
+                            key={JSON.stringify(post.comments)}
                             />
 
                         </div>
@@ -157,7 +158,8 @@ PostItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    
 });
 
 export default connect(mapStateToProps, { deletePost })(PostItem)

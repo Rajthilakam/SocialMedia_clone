@@ -57,8 +57,6 @@ class CommentForm extends Component {
     const {user} = this.props.auth
     return (
                 
-          
-
     <div className="row">
 
       <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">

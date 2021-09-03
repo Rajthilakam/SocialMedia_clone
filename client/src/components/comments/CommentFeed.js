@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+//import {connect} from 'react-redux'
 import CommentItem from './CommentItem';
 
 class CommentFeed extends Component {
+
+
+   
+
+
     render() {
         const { comments, postId,postedbyuser } = this.props;
         console.log(postedbyuser)
@@ -23,5 +29,7 @@ CommentFeed.propTypes = {
     postedbyuser:PropTypes.object.isRequired
   };
 
+
+ 
 
 export default CommentFeed

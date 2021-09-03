@@ -24,6 +24,12 @@ class Post extends Component {
         if (newProps.errors) {
           this.setState({ errors: newProps.errors });
         }
+
+       
+
+       
+
+
       }
 
     render() {

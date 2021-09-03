@@ -7,15 +7,23 @@ import './CommentItem.css';
 
 class CommentItem extends Component {
 
+    
+
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.comment !== this.props.comment) {
+          this.setState({comment: this.props.comment});
+        }
+      }
+
+
     componentWillReceiveProps(newProps) {
         if (newProps.errors) {
           this.setState({ errors: newProps.errors });
         }
-      }
 
-      
-
-   
+    }
+  
     render() {
 
         const { comment } = this.props;

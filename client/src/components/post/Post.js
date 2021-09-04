@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../action/postActions';
 import CreatePost from './CreatePost';
-import PostItem from './PostItem';
+//import PostItem from './PostItem';
 import PostFeed from './PostFeed';
 
 class Post extends Component { 
@@ -24,11 +24,6 @@ class Post extends Component {
         if (newProps.errors) {
           this.setState({ errors: newProps.errors });
         }
-
-       
-
-       
-
 
       }
 

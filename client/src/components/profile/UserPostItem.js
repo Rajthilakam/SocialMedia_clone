@@ -3,14 +3,14 @@ import Avatar from '../common/Avatar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Comment from '../comments/Comment';
-import CommentForm from '../comments/CommentForm';
+//import Comment from '../comments/Comment';
+//import CommentForm from '../comments/CommentForm';
 import { deletePost } from '../../action/postActions';
-import './PostItem.css';
-import CommentFeed from '../comments/CommentFeed';
+import '../post/PostItem.css';
+//import CommentFeed from '../comments/CommentFeed';
 //import CommentItem from '../comments/CommentItem.js';
 
-class PostItem extends Component {
+class UserPostItem extends Component {
 
     constructor(props) {
         super(props)
@@ -24,9 +24,7 @@ class PostItem extends Component {
 
     }
 
-   
-   
-    
+       
     onDelete(id) {
         console.log('clicked Delete button')
         this.props.deletePost(id)
@@ -40,13 +38,9 @@ class PostItem extends Component {
         console.log('clicked save button')
     }
 
-   
-   
-
     render() {
 
         const { post, auth } = this.props;
-
 
         return (
             <div className="row">
@@ -127,14 +121,7 @@ class PostItem extends Component {
                                     <hr />
                                 </div>
                             </div>
-                            <Comment postId={post._id} 
-                            comments={post.comments}  />
-                            <CommentForm postId={post._id}  />
-                            <CommentFeed postId={post._id} 
-                            comments={post.comments} 
-                            postedbyuser={post.postedbyuser} 
-                        
-                            />
+                    
 
                         </div>
                     </div>
@@ -145,7 +132,7 @@ class PostItem extends Component {
     }
 }
 
-PostItem.propTypes = {
+UserPostItem.propTypes = {
     getPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
@@ -158,4 +145,5 @@ const mapStateToProps = state => ({
     
 });
 
-export default connect(mapStateToProps, { deletePost })(PostItem)
+export default connect(mapStateToProps, { deletePost })(UserPostItem)
+

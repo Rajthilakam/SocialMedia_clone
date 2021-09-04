@@ -1,0 +1,16 @@
+.img{
+    height: 180px;
+    width: 180px;
+    object-fit: cover;
+    border-radius: 20px;
+    padding:4px;
+}
+
+.friends {
+    display:flex;
+    flex-wrap: wrap;
+    padding-top: 0px !important;
+    align-items:flex-start;
+    padding-right:-40px;
+   
+}

@@ -12,6 +12,7 @@ const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 const validatePasswordInput = require('../../validation/password');
 
+
 const nodeMailer = require('nodemailer')
 const sendGridTransport = require('nodemailer-sendgrid-transport')
 const crypto = require('crypto')
@@ -75,7 +76,17 @@ _route.post('/register',(req,res) => {
                          //subject:"signup success",
                          //html:"<h1>Welcome to Social Media App</h1>"
                 //})
-                
+
+                const profileFields = {};
+                profileFields.user = user._id;
+                new Profile(profileFields).save()
+                .then(profile => {
+                    console.log(profile)
+                })
+
+
+
+
                 res.json(user)
                 logger.info(`User successfully created id:${user._id} email:${user.email}`)            
             })

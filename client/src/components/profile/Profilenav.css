@@ -1,0 +1,18 @@
+.profilenav {
+    margin-left:125px;
+    padding-left:180px;
+}
+
+.profilenavite{
+    padding-left:30px;
+    padding-right:15px;
+}
+
+.navbar-collapse > .navbar-nav > .nav-item{
+    padding:25px;
+    color:black;
+}; 
+
+.navbar-text {
+    color:black;
+}

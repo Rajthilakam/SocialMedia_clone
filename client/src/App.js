@@ -6,17 +6,20 @@ import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import {SET_CURRENT_USER} from './action/types';
-import { withRouter } from 'react-router';
+//import { withRouter } from 'react-router';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { logoutUser } from './action/authActions';
 import NewsFeed from './components/newsfeed/NewsFeed';
 //import Forgotpassword from './components/auth/Forgotpassword';
 import NewPassword from './components/auth/NewPassword';
+import Profile from './components/profile/Profile';
 
 
 
 function App(props) {
+
+ 
 
   //const {history} = this.props.history
   if (localStorage.jwtToken) {
@@ -53,6 +56,8 @@ function App(props) {
       <Route exact path = '/login' component={Login}></Route>
       <Route  exact path = '/newpassword/:token' component={NewPassword}></Route>
       <Route exact path = '/newsfeed' component={NewsFeed}></Route>
+      <Route exact path = '/profile' component={Profile}></Route>
+
 
     </div>
   </Router>    

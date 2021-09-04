@@ -1,0 +1,18 @@
+.editprofileimg {
+   width: 250px;
+   height:250px;
+    border-radius: 50%;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+    
+ }
+
+ .editprofilediv{
+    align-items: center;
+    text-align: center;
+ }
+ 
+ .editprofile img {
+    width: 100%;
+ }

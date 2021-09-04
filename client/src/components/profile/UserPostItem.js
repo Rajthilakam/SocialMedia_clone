@@ -87,11 +87,14 @@ class UserPostItem extends Component {
 
                             <div className="row">
                                 <div className="col">
+                                <Link to={`/post/${post._id}`}>
                                     <img
                                         src={post.image ? post.image : ''}
                                         className="postimg"
                                         alt="Pizza"
                                     />
+                                </Link>    
+                                
                                 </div>
                             </div>
 

@@ -21,7 +21,7 @@ class CreatePost extends Component {
                 <div className="col">
                     <div className="card mt-3 topcard">
                         <div className="card-body">
-                            <div className="container-fluid">
+                            <div className="container">
                                 <div className="row mt-1">
                                     <div className="col-md-1 mt-1 ml-0 justify-content-start d-sm-none d-md-none d-lg-none d-xl-block d-inline-flex">
 

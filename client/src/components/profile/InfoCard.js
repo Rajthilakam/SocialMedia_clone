@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 
 export default class InfoCard extends Component {
     render() {
+
+        //const {profiles} = this.props.profile
+
         return (
             <div className="row">
             <div className="col">
@@ -12,7 +15,7 @@ export default class InfoCard extends Component {
                  <div className="card-body">
                    <p>
                      <i className="fas fa-home"></i>
-                     <Fragment>&nbsp;</Fragment>Lives in Bellevue
+                     <Fragment>&nbsp;</Fragment>Lives in 
                    </p>
                    <p>
                      <i className="far fa-clock"></i>

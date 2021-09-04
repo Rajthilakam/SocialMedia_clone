@@ -368,6 +368,7 @@ _route.post('/followings',
             .then(profile => {
                 console.log(profile.following)
                 const followings = profile.following.map(following => following.user._id)
+                console.log('in')
                 console.log(followings)
                
                 Profile.find({user:{"$in":followings}})
@@ -376,6 +377,7 @@ _route.post('/followings',
                     console.log(profile)
                     res.json(profile)
                 })
+                .catch(err=>res.status(200).json([]))
                 
             })
             

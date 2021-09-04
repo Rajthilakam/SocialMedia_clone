@@ -138,7 +138,7 @@ class Postmodal extends Component {
 
 
                         <div className="modal-body">
-                            <div className="container-fluid">
+                            <div className="container">
                                 <div className="row">
                                     <div className="col-md-2">
                                         <Avatar src={user.avatar} />
@@ -185,8 +185,7 @@ class Postmodal extends Component {
                                                     style={{ display: "none" }} 
                                                     accept=".png,.jpeg,.jpg"
                                                     onChange={this.imageUpload} 
-                                                    key={this.state.fileinputkey} 
-                                                    
+                                                    key={this.state.fileinputkey}                                   
                                                     
                                                     />
                                                 </label>

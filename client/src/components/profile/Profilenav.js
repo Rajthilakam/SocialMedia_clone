@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import EditProfileModal from './EditProfileModal';
 import './Profilenav.css'
 
 export default class Profilenav extends Component {
@@ -51,6 +52,7 @@ export default class Profilenav extends Component {
                               </div>
                             </div>
                           </nav>
+                          <EditProfileModal/>
                         </div>
                     </div>
             </div>

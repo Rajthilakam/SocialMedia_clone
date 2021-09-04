@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CoverPic from './CoverPic';
+//import CoverPic from './CoverPic';
 import ProfileCenter from './ProfileCenter';
 import Profilenav from './Profilenav';
 
@@ -12,7 +12,7 @@ export default class Profile extends Component {
                 LEFTSIDE
             </div>
             <div className="col-md-9">
-                <CoverPic/>
+                
                 <Profilenav/>
                 <ProfileCenter/>
             </div>

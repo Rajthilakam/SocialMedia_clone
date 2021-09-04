@@ -8,7 +8,7 @@ export default class Avatar extends Component {
               <img
                         src= {this.props.src}
                         className="rounded-circle float-left"
-                        alt="Pizza"
+                        alt="default"
                         width="54"
                         height="56"
                       />  

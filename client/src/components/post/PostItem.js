@@ -56,7 +56,10 @@ class PostItem extends Component {
 
                             <div className="row">
                                 <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
+                                    <Link to='/profile'>
                                     <Avatar src={post.postedbyuser.avatar} />
+                                    </Link>
+                                    
                                 </div>
 
                                 <div className="col-lg-10 col-md-10 col-sm-10 pl-md-2 pl-lg-4">
@@ -93,11 +96,13 @@ class PostItem extends Component {
 
                             <div className="row">
                                 <div className="col">
+                                <Link to={`/post/${post._id}`}>
                                     <img
                                         src={post.image ? post.image : ''}
                                         className="postimg"
                                         alt="Pizza"
                                     />
+                                </Link>    
                                 </div>
                             </div>
 
@@ -146,7 +151,7 @@ class PostItem extends Component {
 }
 
 PostItem.propTypes = {
-    getPost: PropTypes.func.isRequired,
+    
     deletePost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired

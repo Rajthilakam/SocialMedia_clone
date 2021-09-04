@@ -14,6 +14,8 @@ import NewsFeed from './components/newsfeed/NewsFeed';
 //import Forgotpassword from './components/auth/Forgotpassword';
 import NewPassword from './components/auth/NewPassword';
 import Profile from './components/profile/Profile';
+import SinglePost from './components/post/SinglePost';
+import CoverPic from './components/profile/CoverPic';
 
 
 
@@ -57,6 +59,8 @@ function App(props) {
       <Route  exact path = '/newpassword/:token' component={NewPassword}></Route>
       <Route exact path = '/newsfeed' component={NewsFeed}></Route>
       <Route exact path = '/profile' component={Profile}></Route>
+      <Route exact path="/post/:id" component={SinglePost}></Route>
+      <Route exact path="/profilepic" component={CoverPic}></Route>
 
 
     </div>

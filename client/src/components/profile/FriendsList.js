@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 import {getFriendsList} from '../../action/profileActions'
 import './FriendsList.css';
 import Mountain from '../../photos/Mountain.jpg';
@@ -9,6 +10,10 @@ import Mountain from '../../photos/Mountain.jpg';
 class FriendsList extends Component {
 
   componentDidMount() {
+    if (this.props.match && this.props.match.params._id) {
+      console.log(this.props.match.params._id)
+    }
+    console.log(this.props.match)
     this.props.getFriendsList();
 }
 
@@ -22,9 +27,12 @@ class FriendsList extends Component {
     render() {
 
 
-      const { profiles, loading } = this.props.profile;
+      const { profiles } = this.props.profile;
       let friendslist = 0
-      friendslist = profiles.length
+      if(profiles.length != null) {
+        friendslist = profiles.length
+      }
+      
         return  (  
 
                           <div className="row">
@@ -40,12 +48,13 @@ class FriendsList extends Component {
                                 {profiles.map((profile) => (
                                   
                                   <div className="images" key={profile._id}>
+                                    <Link to='/profile'>
                                     <img src={Mountain} class="img" alt="Stones" />
+                                    </Link>
                                     <h5 className="ml-2">{profile.user.name}</h5>
                                     <h5>{profile.city}</h5>
                                   </div>))}                                
                                 </div>
-
 
                               </div>
                             </div>

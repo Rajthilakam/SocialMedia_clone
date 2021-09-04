@@ -23,6 +23,8 @@ class FriendsList extends Component {
 
 
       const { profiles, loading } = this.props.profile;
+      let friendslist = 0
+      friendslist = profiles.length
         return  (  
 
                           <div className="row">
@@ -30,13 +32,14 @@ class FriendsList extends Component {
                               <div className="card topcard mt-3" >
                                 <div className="card-title mb-0">
                                   <h4 className="mt-2 ml-4">Friends</h4>
-                                  <p className="ml-4">10 friends</p>
+                                  <p className="ml-4">{friendslist} friends</p>
                                 </div>   
 
                                
                                 <div className="card-body friends">
                                 {profiles.map((profile) => (
-                                  <div className="images">
+                                  
+                                  <div className="images" key={profile._id}>
                                     <img src={Mountain} class="img" alt="Stones" />
                                     <h5 className="ml-2">{profile.user.name}</h5>
                                     <h5>{profile.city}</h5>

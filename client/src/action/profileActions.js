@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_POSTS} from './types';
+import {GET_PROFILE} from './types';
 import {GET_PROFILES} from './types';
 
 

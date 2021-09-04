@@ -282,10 +282,6 @@ _route.post('/userfollow/post',
                                 res.json(sortedArray)
                             });
 
-
-
-
-
                     })
                     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }))
 
@@ -371,8 +367,18 @@ _route.post('/followings',
             .populate("following.user", "name lastname avatar")
             .then(profile => {
                 console.log(profile.following)
-                res.json(profile.following)
+                const followings = profile.following.map(following => following.user._id)
+                console.log(followings)
+               
+                Profile.find({user:{"$in":followings}})
+                .populate('user','name lastname avatar')
+                .then(profile => {
+                    console.log(profile)
+                    res.json(profile)
+                })
+                
             })
+            
             .catch(err => res.status(404).json({ nofriends: 'No friends' }))
     }
 )

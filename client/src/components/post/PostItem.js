@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 //import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
-import { deletePost,likePost,unLikePost } from '../../action/postActions';
+import { deletePost,likePostFeed,unLikePostFeed } from '../../action/postActions';
 import './PostItem.css';
 import CommentFeed from '../comments/CommentFeed';
 //import CommentItem from '../comments/CommentItem.js';
@@ -48,12 +48,12 @@ class PostItem extends Component {
 
     onLike(id) {
         console.log('like clicked')
-        this.props.likePost(id)
+        this.props.likePostFeed(id)
     }
 
     onUnLike(id) {
         console.log('unlike clicked')
-        this.props.unLikePost(id)
+        this.props.unLikePostFeed(id)
     }
 
 
@@ -61,9 +61,9 @@ class PostItem extends Component {
 
         const { post, auth } = this.props;
 
-        let liked = false
+        let isLiked = false
         if (post.likes.filter(like => like.user === auth.user.id).length > 0) {
-            liked = true
+            isLiked = true
         }
 
 
@@ -127,10 +127,10 @@ class PostItem extends Component {
 
                             <div className="row text-center mt-3">
                                 <div className="col-md-6 col-sm-4"> 
-                                {liked === true ? (
+                                {isLiked === true ? (
                                     <button className="btn likebtn" onClick={this.onUnLike.bind(this, post._id)}>
                                     <h5>
-                                        <i className="fa fa-thumbs-up fa-lg fa-fw" aria-hidden="true" style={{color:"blue"}}></i>
+                                        <i className="fa fa-thumbs-up fa-lg fa-fw" aria-hidden="true" style={{color:"black"}}></i>
                                         Like
                                     </h5>
                             </button> 
@@ -143,9 +143,6 @@ class PostItem extends Component {
                                 </button> 
                                 )}
                                 <p>{post.likes.length} likes</p>                                   
-
-
-
                                 </div>
                                 
                                 <div className="col-md-6 col-sm-4">
@@ -184,8 +181,8 @@ class PostItem extends Component {
 PostItem.propTypes = {
 
     deletePost: PropTypes.func.isRequired,
-    likePost:PropTypes.func.isRequired,
-    unLikePost:PropTypes.func.isRequired,
+    likePostFeed:PropTypes.func.isRequired,
+    unLikePostFeed:PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
 };
@@ -196,4 +193,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, { deletePost,likePost,unLikePost })(PostItem)
+export default connect(mapStateToProps, { deletePost,likePostFeed,unLikePostFeed })(PostItem)

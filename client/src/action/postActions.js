@@ -1,4 +1,4 @@
-import {ADD_POST,GET_POSTS,GET_POST,DELETE_POST,DELETE_COMMENT} from './types';
+import {ADD_POST,GET_POSTS,GET_POST,DELETE_POST} from './types';
 import axios from "axios";
 import { CLEAR_ERRORS,GET_ERRORS,POST_LOADING} from './types';
 
@@ -100,7 +100,7 @@ export const addComment = (postId, commentData) => dispatch => {
     );
 };
 
-// Add Comment
+// Add Comment Feed
 export const addCommentNewsFeed = (postId, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
@@ -132,8 +132,8 @@ export const deletePost = id => dispatch => {
     );
 };
 
-//LIKE POST
-export const likePost = id => dispatch => {
+//LIKE POST FEED
+export const likePostFeed = id => dispatch => {
   axios
     .post(`/api/posts/like/${id}`)
     .then(res => dispatch(getPosts()))
@@ -145,8 +145,8 @@ export const likePost = id => dispatch => {
     );
 };
 
-//UNLIKE POST
-export const unLikePost = id => dispatch => {
+//UNLIKE POST FEED
+export const unLikePostFeed = id => dispatch => {
   axios
     .post(`/api/posts/unlike/${id}`)
     .then(res => dispatch(getPosts()))
@@ -158,11 +158,51 @@ export const unLikePost = id => dispatch => {
     );
 };
 
-//DELETE COMMENT
+//LIKE INDIDVIDUAL POST 
+export const likePost = id => dispatch => {
+  axios
+    .post(`/api/posts/like/${id}`)
+    .then(res => dispatch(getPost()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//UNLIKE INDIVIDUAL POST
+export const unLikePost = id => dispatch => {
+  axios
+    .post(`/api/posts/like/${id}`)
+    .then(res => dispatch(getPost()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//DELETE COMMENT FEED
 export const deleteCommentFeed = (postId,comment_id) => dispatch => {
   axios
     .delete(`/api/posts/comment/${postId}/${comment_id}`)
     .then(res => dispatch(getPosts())
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+};
+
+//DELETE COMMENT IN INDIVIDUAL POST
+export const deleteComment = (postId,comment_id) => dispatch => {
+  axios
+    .delete(`/api/posts/comment/${postId}/${comment_id}`)
+    .then(res => dispatch(getPost())
     )
     .catch(err =>
       dispatch({

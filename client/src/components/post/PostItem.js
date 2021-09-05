@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
-import { deletePost } from '../../action/postActions';
+import { deletePost,likePost,unLikePost } from '../../action/postActions';
 import './PostItem.css';
 import CommentFeed from '../comments/CommentFeed';
 //import CommentItem from '../comments/CommentItem.js';
@@ -16,17 +16,19 @@ class PostItem extends Component {
         super(props)
         this.state = {
             autoFocus: false,
-            key:true
+            key: true
         }
         this.onDelete = this.onDelete.bind(this)
         this.onSave = this.onSave.bind(this)
         this.onEdit = this.onEdit.bind(this)
+        this.onUnLike = this.onUnLike.bind(this)
+        this.onLike = this.onLike.bind(this)
 
     }
 
-   
-   
-    
+
+
+
     onDelete(id) {
         console.log('clicked Delete button')
         this.props.deletePost(id)
@@ -40,12 +42,29 @@ class PostItem extends Component {
         console.log('clicked save button')
     }
 
-   
-   
+    onUnSave(id) {
+        this.props.unSave(id)
+    }
+
+    onLike(id) {
+        console.log('like clicked')
+        this.props.likePost(id)
+    }
+
+    onUnLike(id) {
+        console.log('unlike clicked')
+        this.props.unLikePost(id)
+    }
+
 
     render() {
 
         const { post, auth } = this.props;
+
+        let liked = false
+        if (post.likes.filter(like => like.user === auth.user.id).length > 0) {
+            liked = true
+        }
 
 
         return (
@@ -57,9 +76,9 @@ class PostItem extends Component {
                             <div className="row">
                                 <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
                                     <Link to='/profile'>
-                                    <Avatar src={post.postedbyuser.avatar} />
+                                        <Avatar src={post.postedbyuser.avatar} />
                                     </Link>
-                                    
+
                                 </div>
 
                                 <div className="col-lg-10 col-md-10 col-sm-10 pl-md-2 pl-lg-4">
@@ -96,26 +115,39 @@ class PostItem extends Component {
 
                             <div className="row">
                                 <div className="col">
-                                <Link to={`/post/${post._id}`}>
-                                    <img
-                                        src={post.image ? post.image : ''}
-                                        className="postimg"
-                                        alt="Pizza"
-                                    />
-                                </Link>    
+                                    <Link to={`/post/${post._id}`}>
+                                        <img
+                                            src={post.image ? post.image : ''}
+                                            className="postimg"
+                                            alt="Pizza"
+                                        />
+                                    </Link>
                                 </div>
                             </div>
 
                             <div className="row text-center mt-3">
-                                <div className="col-md-6 col-sm-4">
-                                    <button className="btn likebtn">
+                                <div className="col-md-6 col-sm-4"> 
+                                {liked === true ? (
+                                    <button className="btn likebtn" onClick={this.onUnLike.bind(this, post._id)}>
+                                    <h5>
+                                        <i className="fa fa-thumbs-up fa-lg fa-fw" aria-hidden="true" style={{color:"blue"}}></i>
+                                        Like
+                                    </h5>
+                            </button> 
+                                ):(
+                                    <button className="btn likebtn" onClick={this.onLike.bind(this, post._id)}>
                                         <h5>
                                             <i className="far fa-thumbs-up fa-lg fa-fw"></i>
                                             Like
                                         </h5>
-                                    </button>
+                                </button> 
+                                )}
+                                <p>{post.likes.length} likes</p>                                   
+
+
 
                                 </div>
+                                
                                 <div className="col-md-6 col-sm-4">
                                     <button className="btn likebtn">
                                         <h5>
@@ -132,13 +164,13 @@ class PostItem extends Component {
                                     <hr />
                                 </div>
                             </div>
-                            <Comment postId={post._id} 
-                            comments={post.comments}  />
-                            <CommentForm postId={post._id}  />
-                            <CommentFeed postId={post._id} 
-                            comments={post.comments} 
-                            postedbyuser={post.postedbyuser} 
-                        
+                            <Comment postId={post._id}
+                                comments={post.comments} />
+                            <CommentForm postId={post._id} />
+                            <CommentFeed postId={post._id}
+                                comments={post.comments}
+                                postedbyuser={post.postedbyuser}
+
                             />
 
                         </div>
@@ -151,8 +183,10 @@ class PostItem extends Component {
 }
 
 PostItem.propTypes = {
-    
+
     deletePost: PropTypes.func.isRequired,
+    likePost:PropTypes.func.isRequired,
+    unLikePost:PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
 };
@@ -160,7 +194,7 @@ PostItem.propTypes = {
 const mapStateToProps = state => ({
     auth: state.auth,
     //post:state.post
-    
+
 });
 
-export default connect(mapStateToProps, { deletePost })(PostItem)
+export default connect(mapStateToProps, { deletePost,likePost,unLikePost })(PostItem)

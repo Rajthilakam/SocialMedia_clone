@@ -63,7 +63,6 @@ export const getPosts = () => dispatch => {
 };
 
 //Get Post by id
-
 export const getPost = postid => dispatch => {
   dispatch(setPostLoading());
   axios
@@ -120,9 +119,6 @@ export const addCommentFeed = (postId, commentData) => dispatch => {
     );
 };
 
-
-
-
 //deletepost
 export const deletePost = id => dispatch => {
   axios
@@ -141,6 +137,31 @@ export const deletePost = id => dispatch => {
     );
 };
 
+//LIKE POST
+export const likePost = id => dispatch => {
+  axios
+    .post(`/api/posts/like/${id}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//UNLIKE POST
+export const unLikePost = id => dispatch => {
+  axios
+    .post(`/api/posts/unlike/${id}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 
 

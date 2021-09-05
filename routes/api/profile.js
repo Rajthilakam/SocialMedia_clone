@@ -78,11 +78,13 @@ _route.get('/user/:user_id', (req, res) => {
 _route.post('/',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        const profileFields = {};
-        profileFields.user = req.user.id;
+        const profileData = {};
+        profileData.user = req.user.id;
 
-        if (req.body.city) profileFields.city = req.body.city;
-        if (req.body.bio) profileFields.bio = req.body.bio;
+        if (req.body.city) profileData.city = req.body.city;
+        if (req.body.bio) profileData.bio = req.body.bio;
+        if (req.body.profilepic) profileData.profilepic = req.body.profilepic;
+
 
         Profile.findOne({ user: req.user.id })
             .then(profile => {
@@ -90,7 +92,7 @@ _route.post('/',
                 if (profile) {
                     Profile.findOneAndUpdate(
                         { user: req.user.id },
-                        { $set: profileFields },
+                        { $set: profileData },
                         { new: true },
 
                     ).populate("user", ["name", "lastname", "avatar"])

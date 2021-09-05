@@ -15,6 +15,8 @@ export default function(state = initialState, action) {
           loading: true
         };
       case GET_PROFILE:
+        console.log('in reducer')
+        console.log(action.payload)
         return {
           ...state,
           profile: action.payload,

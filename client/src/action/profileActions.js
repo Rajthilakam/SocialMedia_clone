@@ -1,5 +1,5 @@
 import axios from 'axios';
-//import {GET_PROFILE} from './types';
+import {GET_PROFILE} from './types';
 import {GET_PROFILES} from './types';
 
 
@@ -23,3 +23,46 @@ export const getFriendsList = () => dispatch => {
         })
       );
   };
+
+//GET CURRENT PROFILE
+export const getCurrentProfile = () => dispatch => {
+   
+  axios
+    .get('/api/profile')
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null
+      })
+    );
+};
+
+//CREATE PROFILE
+export const createProfile = () => dispatch => {
+   
+  axios
+    .post('/api/profile')
+    .then(res =>
+      
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null
+      })
+    );
+};
+
+
+
+

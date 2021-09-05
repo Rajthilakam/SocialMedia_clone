@@ -7,8 +7,6 @@ import { addPost } from '../../action/postActions';
 
 class Postmodal extends Component {
 
-   
-
     constructor(){
         super()
         this.innerRef = React.createRef()
@@ -67,18 +65,11 @@ class Postmodal extends Component {
 
                 this.props.addPost(newPost)
 
-                //this.functionThatResetsTheFileInput()
-                
-                //this.fileInput.value = ""
-                //this.setState({ text: '' });
-
                 this.setState({
                     text : '',
                     fileinputkey: Date.now()
                 }); 
-                //this.setState({
-                    //text: ''
-                  //});                
+                            
             })
            
             .catch(err => {

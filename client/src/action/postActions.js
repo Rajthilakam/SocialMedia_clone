@@ -62,6 +62,8 @@ export const getPosts = () => dispatch => {
     );
 };
 
+
+
 //Get Post by id
 export const getPost = postid => dispatch => {
   dispatch(setPostLoading());
@@ -76,6 +78,25 @@ export const getPost = postid => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_POST,
+        payload: null
+      })
+    );
+};
+
+//GET POSTS BY USERID
+export const getUserPostsById = (userid) => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/userposts/${userid}`)
+    .then(res =>
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POSTS,
         payload: null
       })
     );

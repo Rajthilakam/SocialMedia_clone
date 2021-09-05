@@ -388,6 +388,39 @@ _route.post('/followings',
 )
 
 
+// @route   POST api/profile/followings
+// @desc    show the followers by user id(friends)
+// @access  Private
+_route.post('/followings/:user_id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Profile.findOne({ user: req.params.user_id })
+            .populate("following.user", "name lastname avatar")
+            .then(profile => {
+                console.log(profile.following)
+                const followings = profile.following.map(following => following.user._id)
+                console.log('in')
+                console.log(followings)
+               
+                Profile.find({user:{"$in":followings}})
+                .populate('user','name lastname avatar')
+                .then(profile => {
+                    console.log(profile)
+                    res.json(profile)
+                })
+                .catch(err=>res.status(200).json([]))
+                
+            })
+            
+            .catch(err => res.status(404).json({ nofriends: 'No friends' }))
+    }
+)
+
+
+
+
+
+
 // @route   POST api/profile/searchuser
 // @desc    search single user by name(user info and profile info)
 // @access  Private            

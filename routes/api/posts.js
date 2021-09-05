@@ -62,6 +62,7 @@ _route.get(
       console.log(req.user)  
       Post.find({ postedbyuser: req.user.id })
         .populate("postedbyuser","name lastname avatar")
+        .sort({date:-1})
         .then(post => {
             if (Object.keys(post).length > 0) {   
             res.json(post)
@@ -75,6 +76,31 @@ _route.get(
         );
     }
   );
+
+//@Routes GET  /api/posts/userpost/:userid
+//@desc get current user post 
+//@access Private
+_route.post(
+  '/userposts/:userid',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    console.log(req.user)  
+    Post.find({ postedbyuser: req.params.userid })
+      .populate("postedbyuser","name lastname avatar")
+      .then(post => {
+          if (Object.keys(post).length > 0) {   
+          res.json(post)
+        } else {
+          res.status(404).json({ nopostfound: 'No post found for the use' })
+        }
+      }
+      )
+      .catch((err) =>
+        res.status(404).json({ nopostfound: 'No post found for the use' })
+      );
+  }
+);
+
 
 
  //@Routes GET  /api/posts/postid

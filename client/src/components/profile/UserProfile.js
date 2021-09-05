@@ -6,7 +6,7 @@ import FriendsList from './FriendsList'
 import InfoCard from './InfoCard'
 import UserPost from './UserPost';
 
-class Profile extends Component {
+class UserProfile extends Component {
 
     
 
@@ -37,7 +37,18 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default UserProfile
+
+
+
+
+
+
+
+
+
+
+
 
 
 

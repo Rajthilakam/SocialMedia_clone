@@ -11,7 +11,9 @@ class FriendsList extends Component {
 
   componentDidMount() {
     if (this.props.match && this.props.match.params._id) {
+      console.log('in friends list')
       console.log(this.props.match.params._id)
+      
     }
     console.log(this.props.match)
     this.props.getFriendsList();
@@ -28,6 +30,12 @@ class FriendsList extends Component {
 
 
       const { profiles } = this.props.profile;
+      console.log(profiles)
+
+      
+      const idlist = this.props.profile.profiles.map((profile) => profile._id)
+      console.log(idlist)
+
       let friendslist = 0
       if(profiles.length != null) {
         friendslist = profiles.length
@@ -45,15 +53,20 @@ class FriendsList extends Component {
 
                                
                                 <div className="card-body friends">
+
                                 {profiles.map((profile) => (
-                                  
+                                  <Link to={`/profile/${profile._id}`}>
                                   <div className="images" key={profile._id}>
                                     <Link to='/profile'>
                                     <img src={Mountain} class="img" alt="Stones" />
                                     </Link>
                                     <h5 className="ml-2">{profile.user.name}</h5>
                                     <h5>{profile.city}</h5>
-                                  </div>))}                                
+                                  </div>
+                                  </Link>
+                                  )
+                                  )}    
+                                                             
                                 </div>
 
                               </div>

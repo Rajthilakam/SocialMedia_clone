@@ -3,7 +3,7 @@ import Avatar from '../common/Avatar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Comment from '../comments/Comment';
+//import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { deletePost,likePost,unLikePost } from '../../action/postActions';
 import './PostItem.css';
@@ -164,8 +164,7 @@ class PostItem extends Component {
                                     <hr />
                                 </div>
                             </div>
-                            <Comment postId={post._id}
-                                comments={post.comments} />
+                           
                             <CommentForm postId={post._id} />
                             <CommentFeed postId={post._id}
                                 comments={post.comments}

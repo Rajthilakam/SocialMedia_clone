@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addComment } from '../../action/postActions';
+import { addCommentNewsFeed } from '../../action/postActions';
 import './CommentForm.css'
 
 class CommentForm extends Component {
@@ -33,7 +33,7 @@ class CommentForm extends Component {
     };
 
     console.log(postId)
-    this.props.addComment(postId, newComment);
+    this.props.addCommentNewsFeed(postId, newComment);
     this.setState({ text: '' });
   }
 
@@ -104,4 +104,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addComment })(CommentForm)
+export default connect(mapStateToProps, { addCommentNewsFeed })(CommentForm)

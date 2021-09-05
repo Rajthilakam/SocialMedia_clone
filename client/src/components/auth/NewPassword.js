@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { newPassword } from '../../action/authActions';
 
 

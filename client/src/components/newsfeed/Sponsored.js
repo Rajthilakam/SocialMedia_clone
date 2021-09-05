@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Sponsored.css';
 import kalacademy from '../../photos/Kalacademy.jpg';
-import wit from '../../photos/women-in-tech-2020.jpg'
+
 
 export default class Sponsored extends Component {
     render() {

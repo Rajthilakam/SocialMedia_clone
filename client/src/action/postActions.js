@@ -1,4 +1,4 @@
-import {ADD_POST,GET_POSTS,GET_POST,DELETE_POST} from './types';
+import {ADD_POST,GET_POSTS,GET_POST,DELETE_POST,DELETE_COMMENT} from './types';
 import axios from "axios";
 import { CLEAR_ERRORS,GET_ERRORS,POST_LOADING} from './types';
 
@@ -101,16 +101,11 @@ export const addComment = (postId, commentData) => dispatch => {
 };
 
 // Add Comment
-export const addCommentFeed = (postId, commentData) => dispatch => {
+export const addCommentNewsFeed = (postId, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
     .post(`/api/posts/comment/${postId}`, commentData)
-    .then(res =>
-      dispatch({
-        type: GET_POSTS,
-        payload: res.data
-      })
-    )
+    .then(res =>  dispatch(getPosts()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -163,11 +158,19 @@ export const unLikePost = id => dispatch => {
     );
 };
 
-
-
-
-
-
+//DELETE COMMENT
+export const deleteCommentFeed = (postId,comment_id) => dispatch => {
+  axios
+    .delete(`/api/posts/comment/${postId}/${comment_id}`)
+    .then(res => dispatch(getPosts())
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+};
 
 
 export const setPostLoading = () => {

@@ -87,7 +87,7 @@ export const getPost = postid => dispatch => {
 export const getUserPostsById = (userid) => dispatch => {
   dispatch(setPostLoading());
   axios
-    .get(`/api/posts/userposts/${userid}`)
+    .post(`/api/posts/userposts/${userid}`)
     .then(res =>
       dispatch({
         type: GET_POSTS,

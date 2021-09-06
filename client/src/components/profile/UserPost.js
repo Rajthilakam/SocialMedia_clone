@@ -2,28 +2,25 @@ import React, { Component } from 'react';
 import UserPostFeed from './UserPostFeed';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {getUserPosts} from '../../action/postActions'
+import {getUserPosts} from '../../action/postActions';
 
 class UserPost extends Component {
 
-    constructor(){
-        super()    
-        this.state = {                    
-            errors:{}
-        }
+    constructor(props){
+        super(props)    
+        this.state = {
+            userid:''       
+            
+          };
     }
 
-    componentDidMount() {
-        this.props.getUserPosts();
-    }
 
     componentWillReceiveProps(newProps) {
+        
         if (newProps.errors) {
           this.setState({ errors: newProps.errors });
         }
-
       }
-
 
     render() {
 
@@ -31,7 +28,6 @@ class UserPost extends Component {
         const { posts } = this.props.post;
 
         let UserPostContent;
-
         UserPostContent = <UserPostFeed posts={posts} />;
 
         return (
@@ -45,12 +41,15 @@ class UserPost extends Component {
 
 UserPost.propTypes = {
     getUserPosts: PropTypes.func.isRequired,
+    profile:PropTypes.object.isRequired,
     post: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+
 
 };
 
 const mapStateToProps = state => ({
+    profile:state.profile,
     post: state.post,
     errors:state.errors
 });

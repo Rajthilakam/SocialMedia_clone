@@ -75,7 +75,7 @@ class PostItem extends Component {
 
                             <div className="row">
                                 <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <Link to='/profile'>
+                                    <Link to= {`/profile/${auth.user.id}`}>
                                         <Avatar src={post.postedbyuser.avatar} />
                                     </Link>
 

@@ -1,18 +1,52 @@
 import React, { Component } from 'react';
 //import CoverPic from './CoverPic';
 //import ProfileCenter from './ProfileCenter';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import Profilenav from './Profilenav';
 import FriendsList from './FriendsList'
 import InfoCard from './InfoCard'
 import UserPost from './UserPost';
+import {getProfileById} from '../../action/profileActions';
+import {getFriendsListById} from '../../action/profileActions'
+import {getUserPostsById} from '../../action/postActions'
 
 class Profile extends Component {
 
+    constructor(props){
+        super(props)
+            this.state = {
+                userid:this.props.match.params.id
+            }
+        }
     
 
+    componentDidMount() {
+        if (this.props.match && this.props.match.params.id) {
+          this.setState({userid:this.props.match.params.id})  
+          this.props.getProfileById(this.props.match.params.id);
+          this.props.getFriendsListById(this.props.match.params.id);
+          this.props.getUserPostsById(this.props.match.params.id)
+
+          console.log(this.props.match.params.id)
+        }
+      }
+
+      componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.id !== this.props.match.params.id) {  
+            window.location.reload(true);
+          }
+      }
 
 
     render() {
+
+        const {profile} = this.props
+        
+        const {profiles} = this.props.profile
+
+        const {post} = this.props.post
+
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -22,11 +56,11 @@ class Profile extends Component {
                         <Profilenav />
                         <div className="row">
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                <FriendsList />
-                                <InfoCard />
+                                <FriendsList profile={profile} />
+                                <InfoCard/>
                             </div>
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                <UserPost />
+                                <UserPost post={post}/>
                             </div>
                         </div>
 
@@ -37,7 +71,20 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+Profile.propTypes = {
+    getProfileByHandle: PropTypes.func.isRequired,
+    getFriendsListById:PropTypes.func.isRequired,
+    getUserPostsById:PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    profile: state.profile,
+    profiles:state.profiles,
+    post:state.post
+  });
+
+export default connect(mapStateToProps, { getProfileById,getFriendsListById,getUserPostsById })(Profile)
 
 
 

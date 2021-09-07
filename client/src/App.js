@@ -17,13 +17,13 @@ import Profile from './components/profile/Profile';
 //import ProfileCenter from '/components/profile/Profile'
 //import UserProfile from '/components/profile/UserProfile'
 import SinglePost from './components/post/SinglePost';
+//import Loginnew from './components/auth/Loginnew'
+import Forgotpassword from './components/auth/Forgotpassword';
 //import CoverPic from './components/profile/CoverPic';
 
 
 
 function App(props) {
-
- 
 
   //const {history} = this.props.history
   if (localStorage.jwtToken) {
@@ -56,13 +56,15 @@ function App(props) {
     <Provider store={store}>
   <Router>
     <div className="App">
-      <Route exact path = '/' component={Register}></Route>  
+      <Route exact path = '/' component={Register}></Route> 
       <Route exact path = '/login' component={Login}></Route>
       <Route  exact path = '/newpassword/:token' component={NewPassword}></Route>
       <Route exact path = '/newsfeed' component={NewsFeed}></Route>
       <Route exact path = '/profile' component={Profile}></Route>
       <Route exact path="/post/:id" component={SinglePost}></Route>
       <Route exact path="/profile/:id" component={Profile}></Route>
+      <Route  exact path = '/Forgotpassword' component={Forgotpassword}></Route>
+
       
 
     </div>

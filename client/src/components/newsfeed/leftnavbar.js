@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './LeftNavbar.css'
+import './LeftNavbar.css';
+import baby from '../../photos/baby1.jpg'
 
-export default class Leftnavbar extends Component {
+class Leftnavbar extends Component {
   render() {
     return (
 
@@ -12,7 +13,7 @@ export default class Leftnavbar extends Component {
 
             <i
             ><img
-                src="photos/pizza.jpg"
+                src={baby}
                 className="rounded-circle float-left mr-3 d-sm-none d-md-none d-lg-inline d-xl-inline"
                 alt="Pizza"
                 width="44"
@@ -116,8 +117,8 @@ export default class Leftnavbar extends Component {
           </li>
         </Link>
       </ul>
-
-
     )
   }
 }
+
+export default Leftnavbar

@@ -40,12 +40,8 @@ class Post extends Component {
         }
         return (
             <div>
-                <div class="alert alert-info mt-3" role="alert">
-                     To create a post user has to be signin...  
-                </div>
                 <CreatePost />
                 {postContent}
-               
             </div>
         )
     }

@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 import {loginUser} from '../../action/authActions';
 import PropTypes from 'prop-types';
 import Forgotpassword from './Forgotpassword';
+import fbNameLogo from '../../photos/fbNameLogo.png';
+import './Loginnew.css';
+import Registernew from './Registernew';
+
 //import Forgotpassword from './Forgotpassword';
 //import { withRouter } from 'react-router-dom';
 
@@ -60,16 +64,20 @@ class Login extends Component {
         const { errors } = this.state;
 
         return (
-            <div className="container">
-                <div className="row">
+            <div className="login">
+               <div className='logo'>
+                <img src={fbNameLogo} alt='name logo' className="fblogo" />
+                  <h3 className="pl-4">Facebook clone made using React.</h3>
+                </div>
+                <div className="loginCard">
 
-                    <div className="col-md-6">
+                    <div className="cardlogin">
 
                         <form noValidate onSubmit={this.onSubmit}>
                         <div className="form-group">
                                 <label for="exampleInputEmail">Email</label>
                                 <input type="email" 
-                                 className= {classnames('form-control', {'is-invalid': errors.email})} 
+                                 className= {classnames('form-control form-control-lg', {'is-invalid': errors.email})} 
                                  name= "email" 
                                 value = {this.state.email}
                                 onChange= {this.onChange.bind(this)}  
@@ -85,20 +93,23 @@ class Login extends Component {
                                  name="password"
                                  value = {this.state.password}
                                  onChange= {this.onChange.bind(this)}
-                                className= {classnames('form-control', {'is-invalid': errors.password})}  
+                                className= {classnames('form-control form-control-lg', {'is-invalid': errors.password})}  
                                 id="exampleInputPassword1" 
                                 placeholder="Password" />
                                  {errors.password ? (
                                 <div className="invalid-feedback">{errors.password}</div>):''}
                             </div>                           
 
-                            <button type="submit"  className="btn btn-primary">Submit</button>
+                            <button type="submit"  className="btn btn-primary button1 ">LOGIN</button>
                         </form>
 
-                        <div>
-                                <Forgotpassword/>
+                        <div className="mt-3">
+                        <Forgotpassword/>        
                         </div>
+                        <hr></hr>
+                        <Registernew/>
                     </div>
+                                  
                 </div>
             </div>
         )

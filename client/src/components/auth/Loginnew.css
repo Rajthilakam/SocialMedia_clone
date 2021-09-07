@@ -1,0 +1,107 @@
+
+
+.login {
+    height: 800px;    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+    
+    
+    .logo {
+      display: flex;
+      margin-top: 20rem;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      height: 85%;
+    }  
+       
+     
+      .fblogo {
+        width: 28rem;
+  
+       
+      }
+  
+      h3 {
+        margin-top: -2rem;
+        width: 25rem;
+        font-weight: 400;
+        font-size: 28px;
+  
+       
+      }
+    
+  
+    .loginCard {
+      display: flex;
+      flex: 0.8;
+      align-items: flex-start;
+      flex-direction: column;
+      
+    }  
+  
+      .cardlogin {
+        display: flex;
+        flex-direction: column;
+        padding: 2.5rem;
+        border-radius: 1.4rem;
+        background: white;
+  
+       
+      }
+  
+      .title {
+        font-size: 2.1rem;
+        font-weight: 600;
+       
+      }
+  
+      
+      
+      .formbox {
+        display: inline-block;
+        width:399px;
+      }
+      .link {
+        color:#3b5998;
+        display: inline-block;
+        cursor: pointer;
+        font-weight: bold;
+             
+           }
+  
+      .button1 {
+       
+        color:white !important; 
+        align-self: bottom;
+        border-radius: 0.4rem;
+        margin-top: 1rem;
+        border: blue ;
+        padding: 0.4rem 1rem;
+        height: 3rem;
+        width: 350px !important;
+        font-weight: bold;
+       
+      }
+      
+        .button2 {
+          background-color:green;
+          margin-bottom: 15px;
+          color:white !important; 
+          align-self: bottom;
+          border-radius: 0.4rem;
+           padding: 0.4rem 4rem;
+           height: 3rem;
+        width: 350px !important;
+           
+          
+      }
+
+      .button {
+        border:none;
+        outline:none;
+      }
+    

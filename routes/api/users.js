@@ -11,8 +11,6 @@ const passport = require('passport')
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 const validatePasswordInput = require('../../validation/password');
-
-
 const nodeMailer = require('nodemailer')
 const sendGridTransport = require('nodemailer-sendgrid-transport')
 const crypto = require('crypto')
@@ -87,7 +85,7 @@ _route.post('/register',(req,res) => {
 
 
 
-                res.json(user)
+                res.json({user:user,msg:'Registration Success'})
                 logger.info(`User successfully created id:${user._id} email:${user.email}`)            
             })
 

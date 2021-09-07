@@ -37,10 +37,7 @@ class Forgotpassword extends Component {
         this.props.forgotPassword(userEmail)
 
     }
-
-
-
-
+    
     componentWillReceiveProps(nextProps) {
 
         if (nextProps.alert) {
@@ -60,7 +57,7 @@ class Forgotpassword extends Component {
 
         return (
             <div>
-                <Link to="#" data-toggle="modal" data-target="#passwordModal">Forgot Password</Link>
+                <Link to="#" data-toggle="modal" data-target="#passwordModal">Forgot Password?</Link>
 
                 <div className="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
@@ -90,7 +87,7 @@ class Forgotpassword extends Component {
                                         {useremail ? (
                                             <div className="invalid-feedback">{useremail}</div>) : ''}
                                     </div>
-                                    <button type="submit" className="btn btn-primary" >Save changes</button>
+                                    <button type="submit" className="btn btn-primary" >Send Email</button>
                                 </form>
                             </div>
                             <div className="modal-footer">

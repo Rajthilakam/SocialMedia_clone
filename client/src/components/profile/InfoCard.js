@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 export default class InfoCard extends Component {
     render() {
 
-        //const {profiles} = this.props.profile
+        const {profile} = this.props.profile
 
         return (
             <div className="row">
@@ -15,7 +15,7 @@ export default class InfoCard extends Component {
                  <div className="card-body">
                    <p>
                      <i className="fas fa-home"></i>
-                     <Fragment>&nbsp;</Fragment>Lives in 
+                     <Fragment>&nbsp;</Fragment>Lives in {profile.city?profile.city:''}
                    </p>
                    <p>
                      <i className="far fa-clock"></i>

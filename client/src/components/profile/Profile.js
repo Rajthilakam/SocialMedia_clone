@@ -43,7 +43,7 @@ class Profile extends Component {
 
         const {profile} = this.props
         
-        const {profiles} = this.props.profile
+        const {followings} = this.props.profile
 
         const {post} = this.props.post
 
@@ -57,7 +57,7 @@ class Profile extends Component {
                         <div className="row">
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <FriendsList profile={profile} />
-                                <InfoCard/>
+                                <InfoCard profile={profile}/>
                             </div>
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <UserPost post={post}/>

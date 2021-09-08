@@ -28,20 +28,23 @@ class FriendsList extends Component {
 
     const { profiles } = this.props.profile;
     console.log(profiles)
+    const {followings} = this.props.profile
+    console.log('in followings list')
+    console.log(followings)
 
     let friends = 0
-    if (profiles !== null) {
-      friends = profiles.length
+    if (followings !== null) {
+      friends = followings.length
     }
 
 
     let friendslist;
-    if (profiles!==null && profiles.length >=1) {
-      friendslist = profiles.map((profile) => (
+    if (followings!==null && followings.length >=1) {
+      friendslist = followings.map((profile) => (
 
         <div className="images" key={profile._id}>
           <Link to={`/profile/${profile.user.id}`}>
-            <img src={Mountain} class="img" alt="Stones" />
+            <img src={profile.profilepic} class="img" alt="Stones" />
           </Link>
           <h5 className="ml-2">{profile.user.name}</h5>
           <h5>{profile.city}</h5>

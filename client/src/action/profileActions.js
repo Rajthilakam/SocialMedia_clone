@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {GET_PROFILE} from './types';
-import {GET_PROFILES} from './types';
+import {GET_PROFILES,GET_FOLLOWINGS} from './types';
 
 
 
@@ -32,13 +32,13 @@ export const getFriendsListById = (userid) => dispatch => {
     .post(`/api/profile/followings/${userid}`)
     .then(res =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_FOLLOWINGS,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_FOLLOWINGS,
         payload: null
       })
     );

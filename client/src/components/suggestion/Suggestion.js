@@ -13,11 +13,20 @@ class Suggestion extends Component {
         this.state = {
             isfollow: false
         }
+
+        this.onLike = this.onLike.bind(this)
+
     }
 
     componentDidMount() {
         this.props.getSuggestions();
     }
+
+    onLike(id) {
+        console.log('like clicked')
+        console.log(id)
+    }
+
 
 
     render() {
@@ -28,7 +37,7 @@ class Suggestion extends Component {
         let suggestionList;
         if (profiles !== null && profiles.length >= 1) {
             suggestionList = profiles.map((profile) => (
-                <Link to={`/profile/${profile.user}`} className="profilelink">
+                <Link to={`/profile/${profile.user.id}`} className="profilelink">
                     <div
                         className="card card-design"
                         style={{ maxWidth: "16rem", height: "26rem" }}
@@ -41,7 +50,7 @@ class Suggestion extends Component {
                         />
                         <h5 className="mt-2 pl-2">{profile.user.fullname}</h5>
                         <div className="card-body">
-                            <Link to="#" className="btn friendbtn  btn-primary d-block">ADD FRIEND</Link>
+                            <Link to="#" className="btn friendbtn  btn-primary d-block" onClick={this.onLike.bind(this, profile.user.id)}>ADD FRIEND</Link>
                             <br />
                             <Link to="#" className="btn friendbtn btn-outline-secondary d-block">REMOVE</Link>
                         </div>

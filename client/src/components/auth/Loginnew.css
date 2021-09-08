@@ -20,18 +20,14 @@
        
      
       .fblogo {
-        width: 28rem;
-  
-       
+        width: 28rem;       
       }
   
       h3 {
         margin-top: -2rem;
         width: 25rem;
         font-weight: 400;
-        font-size: 28px;
-  
-       
+        font-size: 28px;       
       }
     
   
@@ -48,33 +44,27 @@
         flex-direction: column;
         padding: 2.5rem;
         border-radius: 1.4rem;
-        background: white;
-  
-       
+        background: white;       
       }
   
       .title {
         font-size: 2.1rem;
-        font-weight: 600;
-       
+        font-weight: 600;       
       }
-  
-      
-      
+            
       .formbox {
         display: inline-block;
         width:399px;
       }
+
       .link {
         color:#3b5998;
         display: inline-block;
         cursor: pointer;
-        font-weight: bold;
-             
+        font-weight: bold;             
            }
   
-      .button1 {
-       
+      .button1 {       
         color:white !important; 
         align-self: bottom;
         border-radius: 0.4rem;
@@ -83,8 +73,7 @@
         padding: 0.4rem 1rem;
         height: 3rem;
         width: 350px !important;
-        font-weight: bold;
-       
+        font-weight: bold;       
       }
       
         .button2 {
@@ -95,7 +84,7 @@
           border-radius: 0.4rem;
            padding: 0.4rem 4rem;
            height: 3rem;
-        width: 350px !important;
+           width: 350px !important;
            
           
       }

@@ -471,6 +471,18 @@ _route.post('/users',
             })
     })
 
+
+
+//@route GET SUGGESTIONS
+//@desc Get Suggestions for the current user
+//@access Private
+
+
+
+
+
+
+
 // @route   DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private

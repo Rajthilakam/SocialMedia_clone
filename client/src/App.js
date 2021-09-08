@@ -19,6 +19,7 @@ import Profile from './components/profile/Profile';
 import SinglePost from './components/post/SinglePost';
 //import Loginnew from './components/auth/Loginnew'
 import Forgotpassword from './components/auth/Forgotpassword';
+import Suggestion from './components/suggestion/Suggestion';
 //import CoverPic from './components/profile/CoverPic';
 
 
@@ -64,6 +65,8 @@ function App(props) {
       <Route exact path="/post/:id" component={SinglePost}></Route>
       <Route exact path="/profile/:id" component={Profile}></Route>
       <Route  exact path = '/Forgotpassword' component={Forgotpassword}></Route>
+      <Route  exact path = '/suggestions' component={Suggestion}></Route>
+
 
       
 

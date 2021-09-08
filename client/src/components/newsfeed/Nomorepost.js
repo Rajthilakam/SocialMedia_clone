@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 export default class Nomorepost extends Component {
     render() {
@@ -10,9 +11,9 @@ export default class Nomorepost extends Component {
                         <div className="card-body text-center">
                             <h4>No More Posts</h4>
                             <h5>Add more friends to see more posts in your News Feed.</h5>
-                            <button type="button" className="btn btn-primary mt-3">
+                            <Link to='/suggestions' type="button" className="btn btn-primary mt-3">
                                 Find Friends
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

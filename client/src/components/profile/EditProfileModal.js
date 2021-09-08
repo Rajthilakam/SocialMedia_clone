@@ -36,14 +36,9 @@ class EditProfileModal extends Component {
         }        
     } 
 
-   
-
     componentDidMount() {
         this.props.getCurrentProfile();
       }
-
-      
-    
 
     onSubmit(e) {
         e.preventDefault();

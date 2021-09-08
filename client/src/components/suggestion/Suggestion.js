@@ -1,16 +1,60 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Suggestion.css';
-import {connect} from 'react-redux';
-import {PropTypes} from 'prop-types';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { getSuggestions } from '../../action/profileActions';
 import baby from '../../photos/baby2.jpg'
 
 class Suggestion extends Component {
 
-    
+    constructor() {
+        super()
+        this.state = {
+            isfollow: false
+        }
+    }
+
+    componentDidMount() {
+        this.props.getSuggestions();
+    }
 
 
     render() {
+
+        const { profiles } = this.props.profile
+        //console.log(profiles)
+
+        let suggestionList;
+        if (profiles !== null && profiles.length >= 1) {
+            suggestionList = profiles.map((profile) => (
+                <Link to={`/profile/${profile.user}`} className="profilelink">
+                    <div
+                        className="card card-design"
+                        style={{ maxWidth: "16rem", height: "26rem" }}
+                    >
+                        <img
+                            className="card-img-top img-fluid"
+                            src={profile.profilepic}
+                            alt="Card cap"
+                            style={{ width: "18rem", height: "15rem" }}
+                        />
+                        <h5 className="mt-2 pl-2">{profile.user.fullname}</h5>
+                        <div className="card-body">
+                            <Link to="#" className="btn friendbtn  btn-primary d-block">ADD FRIEND</Link>
+                            <br />
+                            <Link to="#" className="btn friendbtn btn-outline-secondary d-block">REMOVE</Link>
+                        </div>
+                    </div>
+                </Link>
+            )
+            )
+        }
+        else {
+            suggestionList = null
+        }
+
+
         return (
             <div className="conatiner-fluid">
                 <div className="row">
@@ -20,22 +64,7 @@ class Suggestion extends Component {
                     <div className="col-md-9">
                         <h5 className="mt-3">PEOPLE YOU MAY KNOW</h5>
                         <div className="d-flex flex-wrap mt-5">
-                            <div
-                                className="card card-design"
-                                style={{ maxWidth: "16rem", height: "24rem" }}
-                            >
-                                <img
-                                    className="card-img-top img-fluid"
-                                    src={baby}
-                                    alt="Card cap"
-                                    style={{ width: "18rem", height: "18rem" }}
-                                />
-                                <div className="card-body">
-                                    <Link to="#" className="btn friendbtn  btn-primary d-block">ADD FRIEND</Link>
-                                    <br />
-                                    <Link to="#" className="btn btn-outline-secondary d-block">REMOVE</Link>
-                                </div>
-                            </div>
+                            {suggestionList}
                         </div>
                     </div>
                 </div>
@@ -45,17 +74,22 @@ class Suggestion extends Component {
     }
 }
 
+
+
 Suggestion.propTypes = {
+    getSuggestions: PropTypes.func.isRequired,
+    Profiles: PropTypes.array.isRequired,
     errors: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
-  };
+};
 
 const mapStateToProps = (state) => ({
+    profile: state.profile,
     errors: state.errors,
     auth: state.auth
-  });
+});
 
-export default connect(mapStateToProps, {})(Suggestion)
+export default connect(mapStateToProps, { getSuggestions })(Suggestion)
 
 
 

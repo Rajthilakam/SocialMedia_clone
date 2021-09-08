@@ -102,6 +102,24 @@ export const createProfile = () => dispatch => {
     );
 };
 
+//Get Suggestions list
 
+export const getSuggestions = () => dispatch => {
+   
+  axios
+    .post('/api/profile/suggestions')
+    .then(res =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: null
+      })
+    );
+}; 
 
 

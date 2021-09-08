@@ -388,7 +388,7 @@ _route.post('/followings',
 )
 
 
-// @route   POST api/profile/followings
+// @route   POST api/profile/followings/userid
 // @desc    show the followers by user id(friends)
 // @access  Private
 _route.post('/followings/:user_id',
@@ -415,9 +415,6 @@ _route.post('/followings/:user_id',
             .catch(err => res.status(404).json({ nofriends: 'No friends' }))
     }
 )
-
-
-
 
 
 
@@ -473,14 +470,48 @@ _route.post('/users',
 
 
 
+
+
 //@route GET SUGGESTIONS
 //@desc Get Suggestions for the current user
 //@access Private
+_route.post('/suggestions',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+
+        Profile.findOne({ user: req.user.id })
+            .then(profile => {
 
 
+                console.log(profile)
 
+                if ((profile.following).length >=1) {
+                   
+                const followings = profile.following.map(following => following.user)
+                console.log(followings)
 
+                Profile.find({$and:[{user: { "$nin": followings }},{user: { "$nin": req.user._id}}]})
+                    .populate("user", "name lastname avatar")
+                    
+                    .then(profiles => {                       
+                        console.log(profiles)
+                        res.json(profiles)
+                    })
+                    .catch(err => res.status(404).json({ profiles: 'No profile found' }))
+                }  
+                
+                else {
+                    Profile.find({user:{"$nin":req.user._id}})
+                    .populate("user", "name lastname avatar")
+                    .then(profiles => 
+                        res.json(profiles)
+                    )
+                }
 
+            })
+            .catch(err => console.log(err))
+    }
+)
 
 
 // @route   DELETE api/profile

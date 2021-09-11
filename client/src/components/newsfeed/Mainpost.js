@@ -5,7 +5,7 @@ import Createstory from '../story/Createstory';
 import Nomorepost from './Nomorepost';
 import Sponsored from './Sponsored';
 //import CreatePost from '../post/CreatePost';
-import PostItem from '../post/PostItem';
+//import PostItem from '../post/PostItem';
 import Post from '../post/Post';
 
 

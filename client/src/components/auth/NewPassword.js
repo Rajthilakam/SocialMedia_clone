@@ -38,15 +38,6 @@ class NewPassword extends Component {
         console.log(userPassword)
 
         this.props.newPassword(userPassword)
-
-        //axios
-        //.post('/api/users/new-password',userPassword)
-        //.then(res=> {
-
-
-        //return console.log(res.data)})
-        //.catch(err=>
-        //this.setState({errors:err.response.data}))
     }
 
 
@@ -67,28 +58,32 @@ class NewPassword extends Component {
         const message = this.state.alert.message
         const error = this.state.errors.error
         return (
-            <div>
-                <form noValidate onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label for="exampleInputPassword">Password</label>
-                        <input type="password"
-                            className={classnames('form-control', { 'is-invalid': errors.password })}
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.onChange.bind(this)}
-                            id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Enter Password" />
-                        {errors.password ? (
-                            <div className="invalid-feedback">{errors.password}</div>) : ''}
+            <div className="container">
+                <div class="row">
+                    <div className="col">
+                        <form noValidate onSubmit={this.onSubmit}>
+                            <div className="form-group">
+                                <label for="exampleInputPassword">Password</label>
+                                <input type="password"
+                                    className={classnames('form-control', { 'is-invalid': errors.password })}
+                                    name="password"
+                                    value={this.state.password}
+                                    onChange={this.onChange.bind(this)}
+                                    id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Enter Password" />
+                                {errors.password ? (
+                                    <div className="invalid-feedback">{errors.password}</div>) : ''}
 
+                            </div>
+                            {error ? (<div class="alert alert-warning" role="alert">
+                                {error}
+                            </div>) : ''}
+                            {message ? (<div className="alert alert-info" role="alert">
+                                Password updated Successfully.Click here <a href="/login" className="alert-link">to Login.</a>
+                            </div>) : ''}
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </form>
                     </div>
-                    {error ? (<div class="alert alert-warning" role="alert">
-                        {error}
-                    </div>) : ''}
-                    {message ? (<div className="alert alert-info" role="alert">
-                        Password updated Successfully.Click here <a href="/login" className="alert-link">to Login.</a>
-                    </div>) : ''}
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </form>
+                </div>
             </div>
         )
     }

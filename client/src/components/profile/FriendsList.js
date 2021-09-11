@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { getFriendsList } from '../../action/profileActions'
 import './FriendsList.css';
-import Mountain from '../../photos/Mountain.jpg';
 
 
 class FriendsList extends Component {

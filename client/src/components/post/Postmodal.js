@@ -25,8 +25,7 @@ class Postmodal extends Component {
 
     onChange(e) {
         this.setState({[e.target.name]:e.target.value})
-        //this.setState({text :this.state.text})
-        //this.setState(this.file = e.target.files[0]);
+        
     }
 
     imageUpload(e) {
@@ -67,6 +66,7 @@ class Postmodal extends Component {
 
                 this.setState({
                     text : '',
+                    file:null,
                     fileinputkey: Date.now()
                 }); 
                             

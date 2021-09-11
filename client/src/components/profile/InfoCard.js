@@ -1,10 +1,19 @@
 import React, { Component, Fragment } from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
-export default class InfoCard extends Component {
+class InfoCard extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      errors:''
+    }
+  }
     render() {
 
         const {profile} = this.props.profile
-
+       
         return (
             <div className="row">
             <div className="col">
@@ -16,6 +25,10 @@ export default class InfoCard extends Component {
                    <p>
                      <i className="fas fa-home"></i>
                      <Fragment>&nbsp;</Fragment>Lives in {profile.city?profile.city:''}
+                   </p>
+                   <p>
+                     <i className="far fa-smile"></i>
+                     <Fragment>&nbsp;</Fragment>About me: {profile.bio?profile.bio:''}
                    </p>
                    <p>
                      <i className="far fa-clock"></i>
@@ -32,3 +45,16 @@ export default class InfoCard extends Component {
         )
     }
 }
+
+InfoCard.propTypes = {  
+  profile:PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+  profiles:state.profiles,
+});
+
+
+export default connect(mapStateToProps, {})(InfoCard);
+

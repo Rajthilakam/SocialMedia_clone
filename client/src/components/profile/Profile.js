@@ -17,6 +17,7 @@ class Profile extends Component {
         super(props)
             this.state = {
                 userid:this.props.match.params.id
+                
             }
         }
     
@@ -24,26 +25,39 @@ class Profile extends Component {
     componentDidMount() {
         if (this.props.match && this.props.match.params.id) {
           this.setState({userid:this.props.match.params.id})  
+         
           this.props.getProfileById(this.props.match.params.id);
           this.props.getFriendsListById(this.props.match.params.id);
           this.props.getUserPostsById(this.props.match.params.id)
-
-          console.log(this.props.match.params.id)
+         
+        
         }
       }
 
       componentWillReceiveProps(nextProps) {
         if (nextProps.match.params.id !== this.props.match.params.id) {  
+
+            //console.log('in nextprops')
+            //console.log(nextProps.match.params.id)
+           // this.props.getProfileById(this.props.match.params.id);
+            //this.setState({userid:nextProps.match.params.id}) 
+
             window.location.reload(true);
           }
-      }
+
+         
+
+    }
+     
+
+     
 
 
     render() {
 
         const {profile} = this.props
         
-        const {followings} = this.props.profile
+        //const {followings} = this.props.profile
 
         const {post} = this.props.post
 
@@ -56,8 +70,8 @@ class Profile extends Component {
                         <Profilenav />
                         <div className="row">
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                <FriendsList profile={profile} />
-                                <InfoCard profile={profile}/>
+                                <FriendsList profile={profile}  />
+                                <InfoCard profile={profile} />
                             </div>
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <UserPost post={post}/>
@@ -72,7 +86,7 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-    getProfileByHandle: PropTypes.func.isRequired,
+    getProfileById: PropTypes.func.isRequired,
     getFriendsListById:PropTypes.func.isRequired,
     getUserPostsById:PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired
@@ -84,7 +98,7 @@ Profile.propTypes = {
     post:state.post
   });
 
-export default connect(mapStateToProps, { getProfileById,getFriendsListById,getUserPostsById })(Profile)
+export default connect(mapStateToProps,{ getProfileById,getFriendsListById,getUserPostsById })(Profile)
 
 
 

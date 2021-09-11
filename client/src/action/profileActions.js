@@ -110,16 +110,34 @@ export const getSuggestions = () => dispatch => {
     .post('/api/profile/suggestions')
     .then(res =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_FOLLOWINGS,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_FOLLOWINGS,
         payload: null
       })
     );
 }; 
 
+//Follow user
+export const followUser = (id) => dispatch => {
+   
+  axios
+    .post(`/api/profile/follow/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_FOLLOWINGS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_FOLLOWINGS,
+        payload: null
+      })
+    );
+}; 
 

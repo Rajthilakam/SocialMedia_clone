@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 
 
-//import FriendsList from './FriendsList'
-//import InfoCard from './InfoCard'
-//import UserPost from './UserPost';
+
 
 export default class ProfileCenter extends Component {
     render() {

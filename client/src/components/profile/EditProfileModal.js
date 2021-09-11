@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import { getCurrentProfile,createProfile } from '../../action/profileActions';
 import isEmpty from '../../validation/is-empty';
 import './EditProfile.css';
+import { profile } from 'winston';
 
 class EditProfileModal extends Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {  
                    
-            profilepic:'',
+            profilepic:profile.profilepic,
             coverpic:'',
             text:'', 
-            city:'',
-            bio:'',           
+            city:profile.city?profile.city:'',
+            bio:profile.bio?profile.bio:'',           
             errors:{
             }
 
@@ -37,7 +38,7 @@ class EditProfileModal extends Component {
     } 
 
     componentDidMount() {
-        this.props.getCurrentProfile();
+        //this.props.getCurrentProfile();
       }
 
     onSubmit(e) {
@@ -99,7 +100,8 @@ class EditProfileModal extends Component {
     
     render() {
 
-        //const {profile} = this.props.profile
+        const {profile} = this.props.profile
+        console.log('in edit profile',profile)
 
 
         return (
@@ -130,6 +132,7 @@ class EditProfileModal extends Component {
                                 </span>
                                     <input id="imgInput"
                                         name="profilepic"
+                                        
                                         type="file"
                                         style={{ display: "none" }}
                                         accept=".png,.jpeg,.jpg"

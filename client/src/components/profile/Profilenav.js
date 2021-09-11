@@ -1,10 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import EditProfileModal from './EditProfileModal';
-import './Profilenav.css'
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import './Profilenav.css';
 
-export default class Profilenav extends Component {
+class Profilenav extends Component {
+  
     render() {
+
+      const  {profile} = this.props.profile
+
         return (
             <div>
                  <div className="row">
@@ -52,10 +58,21 @@ export default class Profilenav extends Component {
                               </div>
                             </div>
                           </nav>
-                          <EditProfileModal/>
+                          <EditProfileModal profile = {profile}/>
                         </div>
                     </div>
             </div>
         )
     }
 }
+
+Profilenav.propTypes = {  
+  profile:PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+  profiles:state.profiles,
+});
+
+export default connect(mapStateToProps, {})(Profilenav)

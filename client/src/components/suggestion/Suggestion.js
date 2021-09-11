@@ -3,40 +3,43 @@ import { Link } from 'react-router-dom';
 import './Suggestion.css';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { getSuggestions } from '../../action/profileActions';
-import baby from '../../photos/baby2.jpg'
+import { getSuggestions,followUser } from '../../action/profileActions';
+//import baby from '../../photos/baby2.jpg'
 
 class Suggestion extends Component {
 
     constructor() {
         super()
         this.state = {
-            isfollow: false
+            isFollow: false
         }
-
-        this.onLike = this.onLike.bind(this)
-
+        this.onFollow = this.onFollow.bind(this)
     }
 
     componentDidMount() {
         this.props.getSuggestions();
     }
 
-    onLike(id) {
-        console.log('like clicked')
-        console.log(id)
+    onFollow(id) { 
+        this.props.followUser(id)
+
+        console.log('follow',id)
+        console.log('true')
     }
 
-
+    onUnFollow(id){
+        console.log('unfollow')
+    }
 
     render() {
 
         const { profiles } = this.props.profile
-        //console.log(profiles)
+        const {followings} = this.props.profile
+        console.log(followings)
 
         let suggestionList;
-        if (profiles !== null && profiles.length >= 1) {
-            suggestionList = profiles.map((profile) => (
+        if (followings !== null && followings.length >= 1) {
+            suggestionList = followings.map((profile) => (
                 <Link to={`/profile/${profile.user.id}`} className="profilelink">
                     <div
                         className="card card-design"
@@ -50,7 +53,17 @@ class Suggestion extends Component {
                         />
                         <h5 className="mt-2 pl-2">{profile.user.fullname}</h5>
                         <div className="card-body">
-                            <Link to="#" className="btn friendbtn  btn-primary d-block" onClick={this.onLike.bind(this, profile.user.id)}>ADD FRIEND</Link>
+                            {this.state.isFollow === true ? ( 
+                                <Link to="#" 
+                                className="btn friendbtn  btn-primary d-block" 
+                                onClick={this.onFollow.bind(this, profile.user.id)}>FRIENDS</Link>):
+                                (<Link to="#" 
+                                className="btn friendbtn  btn-primary d-block" 
+                                onClick={this.onFollow.bind(this, profile.user.id)}>ADD FRIEND</Link>)}                            
+                            
+
+
+                            
                             <br />
                             <Link to="#" className="btn friendbtn btn-outline-secondary d-block">REMOVE</Link>
                         </div>
@@ -87,6 +100,7 @@ class Suggestion extends Component {
 
 Suggestion.propTypes = {
     getSuggestions: PropTypes.func.isRequired,
+    followUser:PropTypes.func.isRequired,
     Profiles: PropTypes.array.isRequired,
     errors: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
@@ -98,7 +112,7 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { getSuggestions })(Suggestion)
+export default connect(mapStateToProps, { getSuggestions,followUser })(Suggestion)
 
 
 

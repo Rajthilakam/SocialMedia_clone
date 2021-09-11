@@ -61,6 +61,8 @@ class PostItem extends Component {
 
         const { post, auth } = this.props;
 
+        
+
         let isLiked = false
         if (post.likes.filter(like => like.user === auth.user.id).length > 0) {
             isLiked = true
@@ -68,6 +70,9 @@ class PostItem extends Component {
 
 
         return (
+
+            
+
             <div className="row">
                 <div className="col">
                     <div className="card topcard mt-3">
@@ -75,7 +80,7 @@ class PostItem extends Component {
 
                             <div className="row">
                                 <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <Link to= {`/profile/${auth.user.id}`}>
+                                    <Link to= {`/profile/${post.postedbyuser._id}`}>
                                         <Avatar src={post.postedbyuser.avatar} />
                                     </Link>
 

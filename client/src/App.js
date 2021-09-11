@@ -1,32 +1,27 @@
 
 import './App.css';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import {SET_CURRENT_USER} from './action/types';
-//import { withRouter } from 'react-router';
-import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { logoutUser } from './action/authActions';
 import NewsFeed from './components/newsfeed/NewsFeed';
-//import Forgotpassword from './components/auth/Forgotpassword';
 import NewPassword from './components/auth/NewPassword';
 import Profile from './components/profile/Profile';
-//import ProfileCenter from '/components/profile/Profile'
-//import UserProfile from '/components/profile/UserProfile'
 import SinglePost from './components/post/SinglePost';
-//import Loginnew from './components/auth/Loginnew'
 import Forgotpassword from './components/auth/Forgotpassword';
 import Suggestion from './components/suggestion/Suggestion';
-//import CoverPic from './components/profile/CoverPic';
+import PrivateRoute from "./components/common/PrivateRoute";
+
 
 
 
 function App(props) {
 
-  //const {history} = this.props.history
+ 
   if (localStorage.jwtToken) {
     //decode
     const decoded = jwt_decode(localStorage.jwtToken);
@@ -38,7 +33,7 @@ function App(props) {
     store.dispatch(logoutUser());
     //Redirect user login
     window.location.href = "/login";
-    //props.history.push('/login')
+    
   }
     //Set auth header
     
@@ -47,12 +42,10 @@ function App(props) {
     store.dispatch({
       type: SET_CURRENT_USER,
       payload: decoded,
-    });
-    
-    
-  
-    
+    });    
   }
+
+
   return (
     <Provider store={store}>
   <Router>
@@ -60,12 +53,23 @@ function App(props) {
       <Route exact path = '/' component={Login}></Route> 
       <Route exact path = '/login' component={Login}></Route>
       <Route  exact path = '/newpassword/:token' component={NewPassword}></Route>
-      <Route exact path = '/newsfeed' component={NewsFeed}></Route>
-      <Route exact path = '/profile' component={Profile}></Route>
-      <Route exact path="/post/:id" component={SinglePost}></Route>
-      <Route exact path="/profile/:id" component={Profile}></Route>
       <Route  exact path = '/Forgotpassword' component={Forgotpassword}></Route>
+      <Switch>
+      <PrivateRoute exact path = '/newsfeed' component={NewsFeed}/>
+      </Switch>
+      <Switch>
+      <PrivateRoute exact path = '/profile' component={Profile}/>
+      </Switch>
+      <Switch>
+      <PrivateRoute exact path="/post/:id" component={SinglePost}/>
+      </Switch>
+      <Switch>
+      <PrivateRoute exact path="/profile/:id" component={Profile}/> 
+      </Switch>  
+      <Switch>
       <Route  exact path = '/suggestions' component={Suggestion}></Route>
+      </Switch>
+     
 
 
       

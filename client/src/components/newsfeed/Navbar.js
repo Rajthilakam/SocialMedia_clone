@@ -31,6 +31,7 @@ class Navbar extends Component {
 
                         <ul className="navbar-nav mr-auto">
 
+                        <li className="nav-item">
                             <form action="">
                                 <div className="form-group">
                                     <input
@@ -41,18 +42,22 @@ class Navbar extends Component {
                                     />
                                 </div>
                             </form>
-
-                            <li className="nav-item mr-auto">
+                        </li>
+                        </ul>
+  
+                            <div className="nav-item ml-auto">
                                 <Link
                                     to=""
                                     onClick={this.onLogoutClick.bind(this)}
                                     className="nav-link"
                                 >
-                                    <i class="fa fa-sign-out" aria-hidden="true">Logout</i>
-                                    Logout
+                                    <i class="fa fa-sign-out" aria-hidden="true">
+                                    <h5>LOGOUT</h5>
+                                    </i>
+                                   
                                 </Link>
-                            </li>
-                        </ul>
+                            </div>
+                        
 
 
 

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './LeftNavbar.css';
-//import baby from '../../photos/baby1.jpg'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Leftnavbar extends Component {
   render() {
 
-    
+    const {auth} = this.props
+
     return (
 
 
@@ -17,7 +19,7 @@ class Leftnavbar extends Component {
 
             <i
             ><img
-                src=''
+                src={auth.user.avatar}
                 className="rounded-circle float-left mr-3 d-sm-none d-md-none d-lg-inline d-xl-inline"
                 alt="Pizza"
                 width="44"
@@ -25,14 +27,15 @@ class Leftnavbar extends Component {
               /></i>
 
             <h5 className="sidebarfont">
-              <span>Mohita Sai Karthik</span>
+              <span>{auth.user.name}</span>
             </h5>
           </li>
         </Link>
 
 
-        <Link to="#">
+        <Link to='/suggestions'>
           <li className="icons">
+            
             <h5>
               <span
                 className="mr-2"
@@ -42,6 +45,7 @@ class Leftnavbar extends Component {
               </span>
               <span className="sidebarfont">Find Friends</span>
             </h5>
+            
           </li>
         </Link>
 
@@ -125,4 +129,14 @@ class Leftnavbar extends Component {
   }
 }
 
-export default Leftnavbar
+Leftnavbar.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+
+export default connect(mapStateToProps,{})(Leftnavbar)

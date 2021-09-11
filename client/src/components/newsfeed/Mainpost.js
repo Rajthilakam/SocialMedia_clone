@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Leftnavbar from './Leftnavbar';
+import Leftnavbar from './leftnavbar';
 //import CreatePost from '../post/CreatePost';
 import Createstory from '../story/Createstory';
 import Nomorepost from './Nomorepost';

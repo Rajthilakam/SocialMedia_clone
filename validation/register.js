@@ -12,28 +12,28 @@ module.exports = function validateRegisterInput(data){
     errors.name = 'Name is required';
   }
 
-  if (!Validator.isEmail(data.email)){
-    errors.email = 'Email is invalid';
+  if (!Validator.isEmail(data.regemail)){
+    errors.regemail = 'Email is invalid';
   }
 
-  if (isEmpty(data.email)){
-    errors.email = 'Email is required';
+  if (isEmpty(data.regemail)){
+    errors.regemail = 'Email is required';
   }
 
-  if (!Validator.isLength(data.password, {min: 6, max: 30})){
-    errors.password = 'Password must be between 6 and 30 characters';
+  if (!Validator.isLength(data.regpassword, {min: 6, max: 30})){
+    errors.regpassword = 'Password must be between 6 and 30 characters';
   }
 
-  if (isEmpty(data.password)){
-    errors.password = 'Password is required';
+  if (isEmpty(data.regpassword)){
+    errors.regpassword = 'Password is required';
   }
 
-  if (isEmpty(data.password2)){
-    errors.password2 = 'Confirm Password is required';
+  if (isEmpty(data.regpassword2)){
+    errors.regpassword2 = 'Confirm Password is required';
   }
 
-  if (!Validator.equals(data.password, data.password2)){
-    errors.password2 = 'Passwords must match';   
+  if (!Validator.equals(data.regpassword, data.regpassword2)){
+    errors.regpassword2 = 'Passwords must match';   
   }
 
   return {

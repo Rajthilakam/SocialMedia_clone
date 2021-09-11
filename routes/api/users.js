@@ -32,13 +32,13 @@ _route.post('/register',(req,res) => {
   if(!isValid){
     return res.status(400).json(errors);
   }
-    User.findOne({email:req.body.email})
+    User.findOne({email:req.body.regemail})
     .then(user => {
         if(user) {
-            return res.status(400).json({email:"Email alreay exist"})
+            return res.status(400).json({regemail:"Email alreay exist"})
         } else { 
 
-            const avatar = gravatar.url('req.body.email', {
+            const avatar = gravatar.url('req.body.regemail', {
                             s: '200',
                              r: 'pg', 
                              d: 'mm'
@@ -48,19 +48,19 @@ _route.post('/register',(req,res) => {
             const newUser = new User ({
                 name:req.body.name,
                 lastname:req.body.lastname,
-                email:req.body.email,
-                password:req.body.password,
+                email:req.body.regemail,
+                password:req.body.regpassword,
                 avatar
             })
            
             bcrypt.genSalt(10)
             .then((salt) => {
                 console.log(salt)
-                return bcrypt.hash(req.body.password,salt)
+                return bcrypt.hash(req.body.regpassword,salt)
             })
             .then ((hash) => {
                 if (hash) {
-                    newUser.password = hash
+                    newUser.regpassword = hash
                 }
                 console.log(newUser)
                 return newUser.save()
@@ -81,12 +81,9 @@ _route.post('/register',(req,res) => {
                 .then(profile => {
                     console.log(profile)
                 })
-
-
-
-
+                
                 res.json({user:user,msg:'Registration Success'})
-                logger.info(`User successfully created id:${user._id} email:${user.email}`)            
+                logger.info(`User successfully created id:${user._id} email:${user.regemail}`)            
             })
 
             .catch(err => {

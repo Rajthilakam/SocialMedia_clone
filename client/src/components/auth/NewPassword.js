@@ -60,7 +60,7 @@ class NewPassword extends Component {
         return (
             <div className="container">
                 <div class="row">
-                    <div className="col">
+                    <div className="col-6">
                         <form noValidate onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label for="exampleInputPassword">Password</label>

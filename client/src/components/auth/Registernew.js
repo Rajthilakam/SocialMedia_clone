@@ -17,9 +17,9 @@ class Register extends Component {
         this.state = {
             name: '',
             lastname: '',
-            email: '',
-            password: '',
-            password2: '',
+            regemail: '',
+            regpassword: '',
+            regpassword2: '',
             dob: '',
             errors: {}
         };
@@ -37,9 +37,9 @@ class Register extends Component {
         const newUser = {
             name: this.state.name,
             lastname: this.state.lastname,
-            email: this.state.email,
-            password: this.state.password,
-            password2:this.state.password2
+            regemail: this.state.regemail,
+            regpassword: this.state.regpassword,
+            regpassword2:this.state.regpassword2
 
         };
 
@@ -84,7 +84,7 @@ class Register extends Component {
                                                     <fieldset>
                                                         <div className="form-group">
 
-                                                            <input type="first name" className={classnames("form-control form-control-lg", {
+                                                            <input type="text" className={classnames("form-control form-control-lg", {
                                                                 "is-invalid": errors.name,
                                                             })}
                                                                 placeholder="First name" name="name"
@@ -97,7 +97,7 @@ class Register extends Component {
                                                         </div>  <br></br>
 
                                                         <div className="form-group">
-                                                            <input type="last name" className={classnames("form-control form-control-lg", {
+                                                            <input type="text" className={classnames("form-control form-control-lg", {
                                                                 "is-invalid": errors.lastname,
                                                             })} placeholder="Last name" name="lastname"
                                                                 value={this.state.lastname}
@@ -110,39 +110,39 @@ class Register extends Component {
 
                                                         <div className="form-group">
                                                             <input type="email" className={classnames("form-control form-control-lg", {
-                                                                "is-invalid": errors.email,
+                                                                "is-invalid": errors.regemail,
                                                             })}
-                                                                placeholder="Email Address" name="email"
-                                                                value={this.state.email}
+                                                                placeholder="Email Address" name="regemail"
+                                                                value={this.state.regemail}
                                                                 onChange={this.onChange.bind(this)} />
-                                                            {errors.email && (
-                                                                <div className="invalid-feedback">{errors.email}
+                                                            {errors.regemail && (
+                                                                <div className="invalid-feedback">{errors.regemail}
                                                                 </div>
                                                             )}
                                                         </div> <br></br>
 
                                                         <div className="form group">
                                                             <input type="password" className={classnames("form-control form-control-lg", {
-                                                                "is-invalid": errors.password,
+                                                                "is-invalid": errors.regpassword,
                                                             })}
-                                                                placeholder=" Password" name="password"
-                                                                value={this.state.password}
+                                                                placeholder=" Password" name="regpassword"
+                                                                value={this.state.regpassword}
                                                                 onChange={this.onChange.bind(this)} />
-                                                            {errors.password && (
-                                                                <div className="invalid-feedback">{errors.password}
+                                                            {errors.regpassword && (
+                                                                <div className="invalid-feedback">{errors.regpassword}
                                                                 </div>
                                                             )}
                                                         </div><br></br>
 
                                                         <div className="form group">
                                                             <input type="password" className={classnames("form-control form-control-lg", {
-                                                                "is-invalid": errors.password,
+                                                                "is-invalid": errors.regpassword,
                                                             })}
-                                                                placeholder="Confirm Password" name="password2"
-                                                                value={this.state.password2}
+                                                                placeholder="Confirm Password" name="regpassword2"
+                                                                value={this.state.regpassword2}
                                                                 onChange={this.onChange.bind(this)} />
-                                                            {errors.password && (
-                                                                <div className="invalid-feedback">{errors.password}
+                                                            {errors.regpassword && (
+                                                                <div className="invalid-feedback">{errors.regpassword}
                                                                 </div>
                                                             )}
                                                         </div>

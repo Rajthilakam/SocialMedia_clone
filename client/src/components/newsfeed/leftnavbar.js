@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './LeftNavbar.css';
-import baby from '../../photos/baby1.jpg'
+//import baby from '../../photos/baby1.jpg'
 
 class Leftnavbar extends Component {
   render() {
@@ -13,7 +13,7 @@ class Leftnavbar extends Component {
 
             <i
             ><img
-                src={baby}
+                src=''
                 className="rounded-circle float-left mr-3 d-sm-none d-md-none d-lg-inline d-xl-inline"
                 alt="Pizza"
                 width="44"

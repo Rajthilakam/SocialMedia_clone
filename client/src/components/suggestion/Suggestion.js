@@ -33,7 +33,7 @@ class Suggestion extends Component {
 
     render() {
 
-        const { profiles } = this.props.profile
+        //const { profiles } = this.props.profile
         const {followings} = this.props.profile
         console.log(followings)
 

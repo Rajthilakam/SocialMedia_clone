@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import pizza from '../../photos/pizza.jpg'
+//import pizza from '../../photos/pizza.jpg'
 
 export default class Avatar extends Component {
     render() {

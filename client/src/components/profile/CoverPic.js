@@ -1,15 +1,41 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import './CoverPic.css'
 
-export default class CoverPic extends Component {
+class CoverPic extends Component {
+
     render() {
+
+        const { profile } = this.props.profile
         return (
-            <div>
-                
+            <div className="container">
+               
+                    <img class="card-img-top coverimg" 
+                    src= {profile.profilepic} 
+                    alt="Profile Pic"
+                    
+                    />
+                       
+                            
             </div>
         )
     }
 }
 
+
+CoverPic.propTypes = {
+    profile: PropTypes.object.isRequired,
+  };
+  
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    profile: state.profile,
+    profiles: state.profiles,
+  });
+
+
+export default connect(mapStateToProps, {})(CoverPic)  
 
 
 

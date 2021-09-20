@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import CoverPic from './CoverPic';
+import CoverPic from './CoverPic';
 //import ProfileCenter from './ProfileCenter';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -41,16 +41,9 @@ class Profile extends Component {
           }
     }
      
-
-     
-
-
     render() {
 
         const {profile} = this.props
-        
-        //const {followings} = this.props.profile
-
         const {post} = this.props.post
 
         return (
@@ -60,6 +53,8 @@ class Profile extends Component {
                     </div>
                     <div className="col-md-9">
                         <Navbar />
+                        <br/>
+                        <CoverPic />
                         <br/>
                         <Profilenav />
                         <div className="row">

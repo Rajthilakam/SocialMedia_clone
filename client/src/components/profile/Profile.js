@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CoverPic from './CoverPic';
-//import ProfileCenter from './ProfileCenter';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Profilenav from './Profilenav';

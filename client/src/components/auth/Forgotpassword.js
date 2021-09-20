@@ -28,15 +28,14 @@ class Forgotpassword extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
         const userEmail = {
             useremail: this.state.useremail
         };
         console.log(userEmail)
-
         this.props.forgotPassword(userEmail)
-
     }
+
+   
     
     componentWillReceiveProps(nextProps) {
 

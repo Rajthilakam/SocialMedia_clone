@@ -147,7 +147,7 @@ class PostItem extends Component {
                                         </h5>
                                 </button> 
                                 )}
-                                <p>{post.likes.length} likes</p>                                   
+                                <span>{post.likes.length} likes</span>                                   
                                 </div>
                                 
                                 <div className="col-md-6 col-sm-4">

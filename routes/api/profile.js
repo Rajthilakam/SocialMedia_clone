@@ -95,14 +95,14 @@ _route.post('/',
                         { $set: profileData },
                         { new: true },
 
-                    ).populate("user", ["name", "lastname", "avatar"])
+                    ).populate("user", ["name", "lastname", "avatar","date"])
                         .then(profile => {
                             console.log(profile)
                             res.json(profile)
                         })
                 } else {
                     new Profile(profileFields).save()
-                        .then(profile => profile.populate("user", "name lastname avatar").execPopulate())
+                        .then(profile => profile.populate("user", "name lastname avatar date").execPopulate())
                         .then((profile) => res.json(profile));
                 }
             })

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Profilenav from './Profilenav';
+import Navbar from '../newsfeed/Navbar';
 import FriendsList from './FriendsList'
 import InfoCard from './InfoCard'
 import UserPost from './UserPost';
@@ -36,17 +37,8 @@ class Profile extends Component {
 
       componentWillReceiveProps(nextProps) {
         if (nextProps.match.params.id !== this.props.match.params.id) {  
-
-            //console.log('in nextprops')
-            //console.log(nextProps.match.params.id)
-           // this.props.getProfileById(this.props.match.params.id);
-            //this.setState({userid:nextProps.match.params.id}) 
-
             window.location.reload(true);
           }
-
-         
-
     }
      
 
@@ -67,6 +59,8 @@ class Profile extends Component {
                     <div class="col-lg-2 col-xl-2 col-md-0 col-sm-0 col-xs-0">
                     </div>
                     <div className="col-md-9">
+                        <Navbar />
+                        <br/>
                         <Profilenav />
                         <div className="row">
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">

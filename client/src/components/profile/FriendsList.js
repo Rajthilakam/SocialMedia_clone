@@ -45,8 +45,8 @@ class FriendsList extends Component {
           <Link to={`/profile/${profile.user.id}`}>
             <img src={profile.profilepic} class="img" alt="Stones" />
           </Link>
-          <h5 className="ml-2">{profile.user.name}</h5>
-          <h5>{profile.city}</h5>
+          <h5 className="ml-2 mt-2">{profile.user.name.charAt(0).toUpperCase()+profile.user.name.slice(1)}</h5>
+         
         </div>
       )
       )

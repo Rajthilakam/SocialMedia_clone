@@ -7,11 +7,21 @@ import './Profilenav.css';
 
 class Profilenav extends Component {
 
+ 
+
   render() {
     const { auth } = this.props
     const { profile } = this.props.profile
+    const {followings} = this.props.profile
+    const userid = this.props.profileid
+    console.log('profilenav',userid)
 
-    console.log('in profile',profile)
+    const followuser = followings.map(profile => profile.user.id)
+    console.log('test',followuser)
+    if (followuser.includes(userid)) {
+      console.log('true')
+    }
+    
 
     let profilenav;
     if (profile.user) {    
@@ -29,13 +39,33 @@ class Profilenav extends Component {
           <i className="fa fa-pencil"></i><Fragment>&nbsp;</Fragment> Edit Profile
         </button>
         </>
-      ) : (
-      <>
+      ) : ''
+    )}
+
+    let followbutton;
+    if(followings.some(item => item.following.user === userid)) {
+      console.log('inside')
+      followbutton = (
+        <>
         <button className="btn btn-md btn-outline-primary my-3 ml-5 float-right " type="button">
           <i className="fa fa-minus"></i><Fragment>&nbsp;</Fragment> UnFriend
         </button>
-      </>)
-    )}
+      </>
+      )
+    }
+    else {
+      console.log('outside')
+      followbutton = (
+        
+        <>
+          <button className="btn btn-md btn-outline-primary my-3 ml-5 float-right " type="button">
+              <i className="fa fa-minus"></i><Fragment>&nbsp;</Fragment> AddFriend
+          </button>
+        </>
+      )
+    }
+
+   
 
     return (
       <div>
@@ -69,7 +99,9 @@ class Profilenav extends Component {
 
                   {profilenav}
 
+                 
 
+                  {followbutton}
                 </div>
                 <div className="navbar-nav mx-auto">
 

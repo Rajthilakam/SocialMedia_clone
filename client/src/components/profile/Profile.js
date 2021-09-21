@@ -55,7 +55,7 @@ class Profile extends Component {
                         <br/>
                         <CoverPic />
                         <br/>
-                        <Profilenav />
+                        <Profilenav profileid={this.state.userid}/>
                         <div className="row">
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <FriendsList profile={profile}  />

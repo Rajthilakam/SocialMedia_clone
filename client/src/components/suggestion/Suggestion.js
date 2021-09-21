@@ -4,7 +4,7 @@ import './Suggestion.css';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { getSuggestions,followUser } from '../../action/profileActions';
-//import baby from '../../photos/baby2.jpg'
+
 
 class Suggestion extends Component {
 
@@ -22,6 +22,7 @@ class Suggestion extends Component {
 
     onFollow(id) { 
         this.props.followUser(id)
+        this.setState({isFollow:true})
 
         console.log('follow',id)
         console.log('true')
@@ -33,7 +34,6 @@ class Suggestion extends Component {
 
     render() {
 
-        //const { profiles } = this.props.profile
         const {followings} = this.props.profile
         console.log(followings)
 
@@ -56,14 +56,11 @@ class Suggestion extends Component {
                             {this.state.isFollow === true ? ( 
                                 <Link to="#" 
                                 className="btn friendbtn  btn-primary d-block" 
-                                onClick={this.onFollow.bind(this, profile.user.id)}>FRIENDS</Link>):
+                                onClick={this.onFollow.bind(this,profile.user.id)}>FRIENDS</Link>):
                                 (<Link to="#" 
                                 className="btn friendbtn  btn-primary d-block" 
-                                onClick={this.onFollow.bind(this, profile.user.id)}>ADD FRIEND</Link>)}                            
-                            
-
-
-                            
+                                onClick={this.onFollow.bind(this,profile.user.id)}>ADD FRIEND</Link>)}                            
+                                                    
                             <br />
                             <Link to="#" className="btn friendbtn btn-outline-secondary d-block">REMOVE</Link>
                         </div>

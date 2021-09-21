@@ -15,6 +15,7 @@ import SinglePost from './components/post/SinglePost';
 import Forgotpassword from './components/auth/Forgotpassword';
 import Suggestion from './components/suggestion/Suggestion';
 import PrivateRoute from "./components/common/PrivateRoute";
+import Searchfriends from './components/profile/Seachfriends';
 
 
 
@@ -69,6 +70,10 @@ function App(props) {
       <Switch>
       <Route  exact path = '/suggestions' component={Suggestion}></Route>
       </Switch>
+      <Switch>
+      <Route  exact path = '/searchfriends' component={Searchfriends}></Route>
+      </Switch>
+
      
 
 

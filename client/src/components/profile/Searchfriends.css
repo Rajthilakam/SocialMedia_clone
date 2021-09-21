@@ -1,0 +1,9 @@
+.friendsimg {
+    border-radius: 50%;
+    
+    object-fit: cover;        
+
+} 
+.icon{
+float:left
+} 

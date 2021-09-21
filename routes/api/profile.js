@@ -444,7 +444,7 @@ _route.post('/searchuser',
 // @route   POST api/profile/users
 // @desc    search for a list of  user by name or lastname
 // @access  Private
-_route.post('/users',
+_route.post('/searchfriends',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const { errors, isValid } = validateNameInput(req.body);
@@ -462,6 +462,7 @@ _route.post('/users',
                     { lastname: { $regex: `.*${nameSearch}.*` } }
                 ]
             })
+            .populate("user", "city profilepic")
             .then(user => {
                 console.log(user)
                 return res.json(user)
@@ -481,8 +482,6 @@ _route.post('/suggestions',
 
         Profile.findOne({ user: req.user.id })
             .then(profile => {
-
-
                 console.log(profile)
 
                 if ((profile.following).length >=1) {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {GET_PROFILE} from './types';
-import {GET_PROFILES,GET_FOLLOWINGS} from './types';
+import {GET_PROFILES,GET_FOLLOWINGS,GET_FRIENDS} from './types';
 
 
 
@@ -136,6 +136,25 @@ export const followUser = (id) => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_FOLLOWINGS,
+        payload: null
+      })
+    );
+}; 
+
+//search friends
+export const searchFriends = (name) => dispatch => {
+   
+  axios
+    .post('/api/profile/searchfriends',name)
+    .then(res =>
+      dispatch({
+        type: GET_FRIENDS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_FRIENDS,
         payload: null
       })
     );

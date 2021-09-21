@@ -3,6 +3,12 @@
     outline: none;
    }
 
+   .imagepic {
+    width:100%;
+    height:595px;    
+    overflow:hidden;
+   }
+
 .coverimg
   {
     display: flex;
@@ -10,6 +16,7 @@
     height:595px;
     border: 0;
     border-radius: 2rem;
+    object-fit: fill;
   }
   ​
   .profile-upper

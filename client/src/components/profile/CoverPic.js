@@ -9,7 +9,7 @@ class CoverPic extends Component {
 
         const { profile } = this.props.profile
         return (
-            <div className="container">
+            <div className="container imagepic">
                
                     <img class="card-img-top coverimg" 
                     src= {profile.profilepic} 

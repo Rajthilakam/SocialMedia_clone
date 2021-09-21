@@ -14,7 +14,7 @@ class Leftnavbar extends Component {
 
 
       <ul className="collapse show mt-lg-3 pl-lg-3 pl-sm-0">
-        <Link to="#">
+        <Link to= {`/profile/${auth.user.id}`}>
           <li className="icons">
 
             <i

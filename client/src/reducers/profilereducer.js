@@ -1,9 +1,10 @@
-import {GET_PROFILE,GET_PROFILES,PROFILE_LOADING,CLEAR_CURRENT_PROFILE, GET_FOLLOWINGS} from '../action/types';
+import {GET_PROFILE,GET_PROFILES,PROFILE_LOADING,CLEAR_CURRENT_PROFILE, GET_FOLLOWINGS,GET_FRIENDS} from '../action/types';
 
 const initialState = {
     profile: {},
     profiles: [],
     followings:[],
+    searchfriends:[],
     loading: false
   };
 
@@ -15,6 +16,7 @@ export default function(state = initialState, action) {
           ...state,
           loading: true
         };
+
       case GET_PROFILE:
         console.log('in reducer')
         console.log(action.payload)
@@ -23,19 +25,28 @@ export default function(state = initialState, action) {
           profile: action.payload,
           loading: false
         };
+
       case GET_PROFILES:
         return {
           ...state,
           profiles: action.payload,
           loading: false
         };
-        case GET_FOLLOWINGS:
+        
+      case GET_FOLLOWINGS:
           return {
             ...state,
             followings: action.payload,
             loading: false
           };  
 
+      case GET_FRIENDS:
+        return {
+          ...state,
+          searchfriends: action.payload,
+          loading: false
+        };  
+      
       case CLEAR_CURRENT_PROFILE:
         return {
           ...state,

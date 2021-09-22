@@ -194,6 +194,8 @@ class SinglePost extends Component {
                             </div>
                         </div>
                         ))}
+
+                        
                     </div>
 
                 </div>

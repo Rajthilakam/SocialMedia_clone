@@ -16,7 +16,7 @@ class UserPostItem extends Component {
         super(props)
         this.state = {
             autoFocus: false,
-            key:true
+            key: true
         }
         this.onDelete = this.onDelete.bind(this)
         this.onSave = this.onSave.bind(this)
@@ -24,7 +24,7 @@ class UserPostItem extends Component {
 
     }
 
-       
+
     onDelete(id) {
         console.log('clicked Delete button')
         this.props.deletePost(id)
@@ -87,14 +87,14 @@ class UserPostItem extends Component {
 
                             <div className="row">
                                 <div className="col">
-                                <Link to={`/post/${post._id}`}>
-                                    <img
-                                        src={post.image ? post.image : ''}
-                                        className="postimg"
-                                        alt="Pizza"
-                                    />
-                                </Link>    
-                                
+                                    <Link to={`/post/${post._id}`}>
+                                        <img
+                                            src={post.image ? post.image : ''}
+                                            className="postimg"
+                                            alt="Pizza"
+                                        />
+                                    </Link>
+
                                 </div>
                             </div>
 
@@ -124,7 +124,56 @@ class UserPostItem extends Component {
                                     <hr />
                                 </div>
                             </div>
-                    
+
+
+                            <div className="row">
+
+                                <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
+                                    <img
+                                        src={post.postedbyuser && post.postedbyuser.avatar}
+                                        className="rounded-circle float-left mt-2"
+                                        alt="Avatar"
+                                        width="44"
+                                        height="46"
+                                    />
+                                </div>
+                                <div className="col-md-10">
+                                    <form>
+                                        <div className="form-group ml-4">
+                                            <input type="text"
+                                                name="text"
+
+                                                className="form-control"
+                                                id="comments"
+                                                onChange={this.onChange}
+                                                placeholder="Write a Comment....." />
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+
+                            {post.comments && post.comments.map((comment) => (
+                           
+                           <div className="row">
+                               <div className="col-md-1 d-xs-none d-sm-none d-md-none d-lg-none d-xl-block">
+                                   <img
+                                       src={comment.avatar}
+                                       className="rounded-circle float-left"
+                                       alt="Avatar"
+                                       width="44"
+                                       height="46"
+                                   />
+                               </div>
+                               <div className="col-md-10 col-sm-10 col-lg-10">
+                                   <div>
+                                       <p className="pl-3 pt-2">{comment.text}</p>
+                                   </div>
+                               </div>
+                           </div>
+                           ))}        
+
 
                         </div>
                     </div>
@@ -145,7 +194,7 @@ UserPostItem.propTypes = {
 const mapStateToProps = state => ({
     auth: state.auth,
     //post:state.post
-    
+
 });
 
 export default connect(mapStateToProps, { deletePost })(UserPostItem)

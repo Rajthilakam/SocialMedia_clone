@@ -8,11 +8,12 @@ class CoverPic extends Component {
     render() {
 
         const { profile } = this.props.profile
+        const {auth} = this.props
         return (
             <div className="container imagepic">
                
                     <img class="card-img-top coverimg" 
-                    src= {profile.profilepic} 
+                    src= {profile.profilepic?profile.profilepic:auth.user.avatar} 
                     alt="Profile Pic"
                     
                     />

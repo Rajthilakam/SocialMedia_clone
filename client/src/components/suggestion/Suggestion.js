@@ -23,12 +23,10 @@ class Suggestion extends Component {
     onFollow(id) { 
         this.props.followUser(id)
         this.setState({isFollow:true})
-
-        console.log('follow',id)
-        console.log('true')
     }
 
     onUnFollow(id){
+        this.props.unfollowUser(id)
         console.log('unfollow')
     }
 
@@ -38,9 +36,10 @@ class Suggestion extends Component {
         console.log(followings)
 
         let suggestionList;
-        if (followings !== null && followings.length >= 1) {
+        if (followings && followings !== null && followings.length >= 1) {
             suggestionList = followings.map((profile) => (
-                <Link to={`/profile/${profile.user.id}`} className="profilelink">
+                
+                <Link to={`/profile/${profile.user}`} className="profilelink">
                     <div
                         className="card card-design"
                         style={{ maxWidth: "16rem", height: "26rem" }}
@@ -51,7 +50,11 @@ class Suggestion extends Component {
                             alt="Card cap"
                             style={{ width: "18rem", height: "15rem" }}
                         />
-                        <h5 className="mt-2 pl-2">{profile.user.fullname}</h5>
+                        {profile.user && ( 
+                        <h5 className="mt-2 pl-2">{profile.user.fullname?profile.user.fullname:''}</h5>
+                        )}
+                       
+                        {profile.user && (    
                         <div className="card-body">
                             {this.state.isFollow === true ? ( 
                                 <Link to="#" 
@@ -64,10 +67,13 @@ class Suggestion extends Component {
                             <br />
                             <Link to="#" className="btn friendbtn btn-outline-secondary d-block">REMOVE</Link>
                         </div>
+                        )}
                     </div>
                 </Link>
+                )
+                            
             )
-            )
+            
         }
         else {
             suggestionList = null

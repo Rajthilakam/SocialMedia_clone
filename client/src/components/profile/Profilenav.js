@@ -14,17 +14,17 @@ class Profilenav extends Component {
     const { profile } = this.props.profile
     const {followings} = this.props.profile
     const userid = this.props.profileid
-    console.log('profilenav',userid)
 
-    const followuser = followings.map(profile => profile.user.id)
-    console.log('test',followuser)
+    let followuser;
+    if(followings && followings!==null && followings.length>=1) {
+    followuser = followings.map(profile => profile.user.id)  
     if (followuser.includes(userid)) {
       console.log('true')
     }
     else {
       console.log('false')
     }
-    
+  }
 
     let profilenav;
     if (profile.user) {    
@@ -46,6 +46,7 @@ class Profilenav extends Component {
     )}
 
     let followbutton;
+    if (followuser) {
     if(followuser.some(item => item.id === userid))  {
       console.log('inside')
       followbutton = (
@@ -67,7 +68,7 @@ class Profilenav extends Component {
         </>
       )
     }
-
+  }
    
 
     return (

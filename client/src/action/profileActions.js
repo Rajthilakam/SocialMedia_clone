@@ -141,6 +141,26 @@ export const followUser = (id) => dispatch => {
     );
 }; 
 
+//unfollow friends
+export const unfollowUser = (id) => dispatch => {
+   
+  axios
+    .post(`/api/profile/unfollow/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_FOLLOWINGS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_FOLLOWINGS,
+        payload: null
+      })
+    );
+}; 
+
+
 //search friends
 export const searchFriends = (name) => dispatch => {
    

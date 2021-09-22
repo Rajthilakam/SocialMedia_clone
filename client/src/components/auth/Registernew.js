@@ -42,6 +42,7 @@ class Register extends Component {
             regpassword2:this.state.regpassword2
 
         };
+        console.log('in register')
 
         this.props.registerUser(newUser, this.props.history);
 
@@ -176,7 +177,8 @@ class Register extends Component {
 
                                                             <button type="button" className="btn  btn-secondary" data-dismiss="modal"> CANCEL </button>
                                                             &nbsp;
-                                                            <button data-toggle="modal" type="submit" className="btn  btn-primary">SIGN UP </button>
+                                                            <button  data-dismiss="modal"
+                                                                onClick = {this.onSubmit} className="btn  btn-primary">SIGN UP </button>
                                                         </div>
                                                     </fieldset>
                                                     </form>

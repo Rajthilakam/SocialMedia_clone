@@ -60,7 +60,7 @@ _route.post('/register',(req,res) => {
             })
             .then ((hash) => {
                 if (hash) {
-                    newUser.regpassword = hash
+                    newUser.password = hash
                 }
                 console.log(newUser)
                 return newUser.save()

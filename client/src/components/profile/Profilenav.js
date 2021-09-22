@@ -21,6 +21,9 @@ class Profilenav extends Component {
     if (followuser.includes(userid)) {
       console.log('true')
     }
+    else {
+      console.log('false')
+    }
     
 
     let profilenav;
@@ -43,7 +46,7 @@ class Profilenav extends Component {
     )}
 
     let followbutton;
-    if(followings.some(item => item.following.user === userid)) {
+    if(followuser.some(item => item.id === userid))  {
       console.log('inside')
       followbutton = (
         <>
@@ -51,7 +54,7 @@ class Profilenav extends Component {
           <i className="fa fa-minus"></i><Fragment>&nbsp;</Fragment> UnFriend
         </button>
       </>
-      )
+      ) 
     }
     else {
       console.log('outside')
@@ -59,7 +62,7 @@ class Profilenav extends Component {
         
         <>
           <button className="btn btn-md btn-outline-primary my-3 ml-5 float-right " type="button">
-              <i className="fa fa-minus"></i><Fragment>&nbsp;</Fragment> AddFriend
+              <i className="fa fa-minus"></i><Fragment>&nbsp;</Fragment>
           </button>
         </>
       )

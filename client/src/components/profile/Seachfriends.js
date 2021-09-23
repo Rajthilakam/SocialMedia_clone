@@ -1,50 +1,75 @@
-import React, { Component } from 'react';
+import React, { Component, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import { followUser } from '../../action/profileActions';
 import './Searchfriends.css';
 
 class Searchfriends extends Component {
 
+
+    constructor() {
+        super()
+        this.state = {
+            isFollow: false
+        }
+        this.onFollowUser = this.onFollowUser.bind(this)
+    }
+
+   
+    onFollowUser(id) {
+        console.log(id)
+        this.props.followUser(id)
+        this.setState({isFollow:true})
+    }
+
     render() {
 
         const {searchfriends} = this.props.profile
-        const {followings} = this.props.profile
-
-       
+        const {followings} = this.props.profile 
+        console.log('search',searchfriends)
         
         let friendsList;
         if (searchfriends !== null && searchfriends.length >= 1){
-            friendsList = searchfriends.map((profile) => (
-                <Link to= {`/profile/${profile._id}`}>
+            friendsList = searchfriends.map((user) => (
+               
                      <div className="friendslist">
                                 <div className="media mt-2">
 
                                     <img 
                                     className="mr-3 rounded-circle" 
-                                    src={profile.avatar} 
+                                    src={user.avatar} 
                                     alt="Generic placeholder"  
                                     width="74"
                                     height="76"/>
+                                  
                                     <div className="media-body">
                                        
-                                    {followings.some(item => item.user._id === profile._id) ? (    
-                                        <span style={{color:"Dodgerblue"}}>
-                                            <i className="fas fa-check-circle fa-2x float-right mr-5"></i>
-                                        </span>):
-                                        (
-                                            <span style={{color:"Dodgerblue"}}>
-                                            <i className="fas fa-plus fa-2x float-right mr-5"></i>
-                                        </span>  
-                                        )}
+                                            { this.state.isFollow === true ? 
+                                           ( <button className="btn btn-md btn-outline-secondary my-3 ml-5 float-right " 
+                                            type="button"
+                                            onClick={this.onFollowUser.bind(this,user._id)}>                                           
+                                            Friends
+                                          </button>) : (
+                                              <button className="btn btn-md btn-outline-secondary my-3 ml-5 float-right " 
+                                              type="button"
+                                              onClick={this.onFollowUser.bind(this,user._id)}>                                           
+                                              AddFriend
+                                            </button>
+                                          )  }
 
-                                      <h5 className="mt-0">{profile.fullname}</h5>
-                                      <p>{}</p>                                                                  
+
+                                        
+                                     <Link to= {`/profile/${user._id}`}>
+                                      <h5 className="mt-0">{user.fullname}</h5>
+                                      <p>{user.email}</p>  
+                                    </Link>                                                                  
                                     </div>
+                                    
                                 </div>
                                 <hr/>
                             </div>  
-                        </Link>          
+                                  
             ))
         }
 
@@ -75,7 +100,8 @@ class Searchfriends extends Component {
 }
 
 Searchfriends.propTypes = {
-    searchfriends:PropTypes.array.isRequired,  
+    searchfriends:PropTypes.array.isRequired, 
+    followUser:PropTypes.func.isRequired, 
     auth: PropTypes.object.isRequired,
     Profiles: PropTypes.array.isRequired,
   };
@@ -87,7 +113,7 @@ const mapStateToProps = (state) => ({
     
   })
 
-export default connect(mapStateToProps, {})(Searchfriends)
+export default connect(mapStateToProps, {followUser})(Searchfriends)
 
 
 

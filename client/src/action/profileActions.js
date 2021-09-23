@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {GET_PROFILE} from './types';
 import {GET_PROFILES,GET_FOLLOWINGS,GET_FRIENDS} from './types';
+import { getPosts } from './postActions';
 
 
 
@@ -127,11 +128,13 @@ export const followUser = (id) => dispatch => {
    
   axios
     .post(`/api/profile/follow/${id}`)
-    .then(res =>
+    .then(res => {
       dispatch({
         type: GET_FOLLOWINGS,
         payload: res.data
       })
+      dispatch(getPosts())
+    }
     )
     .catch(err =>
       dispatch({

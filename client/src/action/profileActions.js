@@ -103,6 +103,26 @@ export const createProfile = () => dispatch => {
     );
 };
 
+//edit profile
+export const editProfile = (profileData) => dispatch => {   
+  axios
+    .post('/api/profile',profileData)
+    .then(res =>
+      
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null
+      })
+    );
+};
+
+
 //Get Suggestions list
 
 export const getSuggestions = () => dispatch => {

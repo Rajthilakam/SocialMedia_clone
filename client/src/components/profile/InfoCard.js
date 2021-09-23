@@ -32,11 +32,11 @@ class InfoCard extends Component {
                    </p>
                    <p>
                      <i className="far fa-clock"></i>
-                     <Fragment>&nbsp;</Fragment>Joined Augugst 2021
+                     <Fragment>&nbsp;</Fragment>Joined September 2021
                    </p>
                    <p>
                      <i className="fas fa-graduation-cap"></i>
-                     <Fragment>&nbsp;</Fragment>Studied at University of Washington
+                     <Fragment>&nbsp;</Fragment>Studied at University of {profile.city?profile.city:''}
                    </p>
                  </div>
                </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { getCurrentProfile,createProfile } from '../../action/profileActions';
+import { getCurrentProfile,editProfile } from '../../action/profileActions';
 import isEmpty from '../../validation/is-empty';
 import './EditProfile.css';
 import { profile } from 'winston';
@@ -68,7 +68,7 @@ class EditProfileModal extends Component {
                 console.log('inside fetch')
                
 
-                this.props.createProfile(profileData)
+                this.props.editProfile(profileData)
                 console.log('triggered')
                 console.log(profileData)
                             
@@ -188,7 +188,7 @@ class EditProfileModal extends Component {
 }
 
     EditProfileModal.propTypes = {
-    createProfile: PropTypes.func.isRequired,
+    editProfile: PropTypes.func.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -200,4 +200,4 @@ const mapStateToProps = state => ({
   });
 
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(EditProfileModal)
+export default connect(mapStateToProps, { editProfile, getCurrentProfile })(EditProfileModal)

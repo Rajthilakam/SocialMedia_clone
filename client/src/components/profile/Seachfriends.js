@@ -26,7 +26,7 @@ class Searchfriends extends Component {
     render() {
 
         const {searchfriends} = this.props.profile
-        const {followings} = this.props.profile 
+        //const {followings} = this.props.profile 
         console.log('search',searchfriends)
         
         let friendsList;

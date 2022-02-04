@@ -1,3 +1,4 @@
+![Facebook_Clone](https://user-images.githubusercontent.com/50530648/152576334-40a590d1-5682-47fb-8fe7-3265f0ed14b9.png)
 # SocialMedia_clone
 npm start
 Mini Version of Social Media Clone with MERN stack

@@ -1,3 +1,4 @@
+![user_friends](https://user-images.githubusercontent.com/50530648/152576448-2ff3d4b0-ebcf-47f8-98bc-550514ed663a.png)
 ![user_profile](https://user-images.githubusercontent.com/50530648/152576411-98cbd301-f90d-4016-87c9-71fe84cacf7a.png)
 ![Facebook_Clone](https://user-images.githubusercontent.com/50530648/152576334-40a590d1-5682-47fb-8fe7-3265f0ed14b9.png)
 # SocialMedia_clone

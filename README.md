@@ -1,3 +1,4 @@
+![create_post](https://user-images.githubusercontent.com/50530648/152576892-2a4e8e63-d884-4724-a9fe-67c76462af4e.png)
 ![find_friends](https://user-images.githubusercontent.com/50530648/152576683-d7481399-8b8a-4f19-b22e-67a9aec049e9.png)
 ![NewsFeed](https://user-images.githubusercontent.com/50530648/152576611-ecf8a5fd-9a91-4ad4-9542-5b50b57529ea.png)
 ![post](https://user-images.githubusercontent.com/50530648/152576496-1ed36113-d07f-479b-a71d-7f23d1810513.png)
